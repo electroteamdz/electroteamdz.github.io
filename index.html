@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Electro Team | Powering Your Future</title>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="logo-wrapper">
+                <i class="fas fa-bolt logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-primary">ELECTRO</span>
+                    <span class="logo-secondary">TEAM</span>
+                </div>
+            </div>
+            <div class="loading-spinner"></div>
+            <p>Powering Your Future...</p>
+        </div>
+    </div>
+
+    <!-- Scroll Buttons -->
+    <div class="scroll-buttons">
+        <button class="scroll-btn scroll-up" aria-label="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="scroll-btn scroll-down" aria-label="Scroll to bottom">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav__logo">
+            <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo">
+            <span>Electro<span>Team</span></span>
+        </div>
+        
+        <div class="nav-right">
+            <button class="nav__toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay"></div>
+
+        <!-- Mobile Menu Sidebar -->
+        <div class="mobile-sidebar">
+            <div class="sidebar-header">
+                <div class="nav__logo_menu">
+                    <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo">
+                    <span>Electro<span>Team</span></span>
+                </div>
+                <button class="close-sidebar" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-language">
+                    <div class="language-picker">
+                        <div class="lang-current">
+                            <span class="lang-code">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="lang-dropdown">
+                            <div class="lang-option" data-lang="en">
+                                <span class="lang-name">English</span>
+                                <span class="lang-code">EN</span>
+                            </div>
+                            <div class="lang-option" data-lang="ar">
+                                <span class="lang-name">العربية</span>
+                                <span class="lang-code">AR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="sidebar-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#whyus">Why Us</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact" class="sidebar-contact-btn">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Background Video -->
+    <section id="home" class="section hero">
+        <!-- Background Video -->
+        <div class="hero-video-container">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="https://assets.mixkit.co/videos/30219/30219-720.mp4" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+                <img src="https://images.unsplash.com/photo-1544724569-5f546fd6f2b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Electrical background">
+            </video>
+        </div>
+        
+        <div class="section-container">
+            <div class="hero-content">
+                <h1>
+                    Powering Your<br /><span>Future</span> With<br />Modern Energy
+                </h1>
+                <p class="hero-subtitle">
+                    Reliable electricity solutions for homes and businesses across Algeria.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="start-project">
+                        <i class="fas fa-bolt"></i>
+                        Get Free Consultation
+                    </a>
+                    <a href="#services" class="secondary-btn">
+                        <i class="fas fa-concierge-bell"></i>
+                        Our Services
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <h3>+ 5 Years</h3>
+                            <p>in the Business</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div>
+                            <h3>24/7</h3>
+                            <p>Emergency Support</p>
+                        </div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div>
+                            <h3>100%</h3>
+                            <p>Quality Guarantee</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section - Split View Carousel -->
+    <section id="about" class="section about-section">
+        <div class="split-carousel">
+            <div class="split-content">
+                <div class="section-header">
+                    <h2 class="section-title">About <span>Electro Team</span></h2>
+                    <p class="section-subtitle">Leading the energy revolution since 2020</p>
+                </div>
+                
+                <div class="split-carousel-content">
+                    <div class="split-text">
+                        <div class="split-slide active" data-index="0">
+                            <div class="slide-number">01</div>
+                            <h3>Who We Are</h3>
+                            <p class="slide-description">
+                                At Electro Team, we are dedicated to delivering top-tier electrical solutions across Algeria. 
+                                With years of expertise, our team of skilled professionals specializes in electrical installations, 
+                                maintenance, and troubleshooting.
+                            </p>
+                            <div class="slide-features">
+                                <div class="feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Licensed & Certified</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Safety First Approach</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="split-slide" data-index="1">
+                            <div class="slide-number">02</div>
+                            <h3>Our Mission & Vision</h3>
+                            <p class="slide-description">
+                                To provide reliable, efficient, and safe electrical solutions that power homes and businesses 
+                                across Algeria, using the latest technology and certified materials.
+                            </p>
+                            <div class="slide-features">
+                                <div class="feature">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>Customer Satisfaction</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-rocket"></i>
+                                    <span>Innovation Driven</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="split-slide" data-index="2">
+                            <div class="slide-number">03</div>
+                            <h3>Our Core Values</h3>
+                            <p class="slide-description">
+                                We prioritize safety in every project, following strict protocols and using certified safety equipment. 
+                                Building lasting relationships with our clients through transparent communication and quality work.
+                            </p>
+                            <div class="slide-features">
+                                <div class="feature">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Safety Certified</span>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-handshake"></i>
+                                    <span>Trust & Reliability</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="split-controls">
+                            <button class="split-prev" aria-label="Previous">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="split-dots">
+                                <button class="dot active" data-index="0"></button>
+                                <button class="dot" data-index="1"></button>
+                                <button class="dot" data-index="2"></button>
+                            </div>
+                            <button class="split-next" aria-label="Next">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="split-image">
+                        <div class="image-container">
+                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="About Electro Team" class="active" data-index="0" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Our Mission" data-index="1" loading="lazy">
+                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                 alt="Our Values" data-index="2" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Card Grid Carousel -->
+    <section id="services" class="section services-section">
+        <div class="services-bg-pattern"></div>
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Services</span></h2>
+                <p class="section-subtitle">Comprehensive electrical solutions for every need</p>
+            </div>
+            
+            <div class="services-carousel">
+                <div class="services-track">
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Electrical Installation</h3>
+                        <p>Comprehensive electrical setups for new buildings, renovations, and expansions.</p>
+                        <ul class="service-features">
+                            <li>Complete wiring solutions</li>
+                            <li>Panel upgrades</li>
+                            <li>Circuit installations</li>
+                        </ul>
+                        <a href="#contact" class="service-cta">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Maintenance & Repair</h3>
+                        <p>Regular inspections and prompt repairs to keep systems running smoothly.</p>
+                        <ul class="service-features">
+                            <li>24/7 emergency service</li>
+                            <li>Preventive maintenance</li>
+                            <li>Troubleshooting</li>
+                        </ul>
+                        <a href="#contact" class="service-cta">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Lighting Solutions</h3>
+                        <p>Design and installation of efficient lighting for all spaces.</p>
+                        <ul class="service-features">
+                            <li>LED lighting systems</li>
+                            <li>Smart home lighting</li>
+                            <li>Commercial lighting</li>
+                        </ul>
+                        <a href="#contact" class="service-cta">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safety Systems</h3>
+                        <p>Installation of security cameras, alarm systems, and electrical safety equipment.</p>
+                        <ul class="service-features">
+                            <li>Security camera installation</li>
+                            <li>Alarm systems</li>
+                            <li>Electrical safety equipment</li>
+                        </ul>
+                        <a href="#contact" class="service-cta">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="services-controls">
+                    <button class="services-prev" aria-label="Previous services">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="services-next" aria-label="Next services">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="services-indicator">
+                <div class="indicator-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section - Feature Carousel -->
+    <section id="whyus" class="section whyus-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Why <span>Choose Us</span></h2>
+                <p class="section-subtitle">The Electro Team difference</p>
+            </div>
+            
+            <div class="feature-carousel">
+                <div class="feature-slides">
+                    <div class="feature-slide active">
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h3>Certified Professionals</h3>
+                            <p>All our electricians are licensed, insured, and continuously trained on the latest electrical codes and safety standards.</p>
+                            <div class="feature-badge">
+                                <span>Licensed</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-slide">
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>24/7 Emergency Service</h3>
+                            <p>Electrical emergencies don't wait for business hours. That's why we offer round-the-clock emergency services for urgent repairs.</p>
+                            <div class="feature-badge">
+                                <span>Always Available</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-slide">
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3>Quality Guarantee</h3>
+                            <p>All our installations come with comprehensive warranties. We stand behind our work and ensure complete customer satisfaction.</p>
+                            <div class="feature-badge">
+                                <span>5-Year Warranty</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-slide">
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3>Transparent Pricing</h3>
+                            <p>No hidden costs. We provide detailed quotes and explain every aspect of the work before starting any project.</p>
+                            <div class="feature-badge">
+                                <span>No Surprises</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-navigation">
+                    <div class="feature-dots">
+                        <button class="feature-dot active" data-index="0">
+                            <span>Certified</span>
+                        </button>
+                        <button class="feature-dot" data-index="1">
+                            <span>24/7 Service</span>
+                        </button>
+                        <button class="feature-dot" data-index="2">
+                            <span>Quality</span>
+                        </button>
+                        <button class="feature-dot" data-index="3">
+                            <span>Pricing</span>
+                        </button>
+                    </div>
+                    <div class="feature-arrows">
+                        <button class="feature-prev" aria-label="Previous feature">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="feature-next" aria-label="Next feature">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - Restored from previous version -->
+    <section id="projects" class="section projects-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Projects</span></h2>
+                <p class="section-subtitle">Successfully completed projects across Algeria</p>
+            </div>
+            
+            <div class="projects-carousel">
+                <div class="projects-list">
+                    <article class="project-item active">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <div class="project-number">01</div>
+                                <h3>Commercial Office Building</h3>
+                                <p class="project-description">
+                                    Full electrical installation including backup generators, emergency lighting, and energy management system for a modern 10-story office complex in Algiers.
+                                </p>
+                                <div class="project-details">
+                                    <div class="detail">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Completed: 2023</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Algiers, Algeria</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-building"></i>
+                                        <span>10 Floors</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-image">
+                                <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Office Building" loading="lazy">
+                                <div class="project-tag">Commercial</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <div class="project-number">02</div>
+                                <h3>Industrial Plant Upgrade</h3>
+                                <p class="project-description">
+                                    Complete electrical overhaul with new control systems, safety upgrades, and energy-efficient lighting for increased production efficiency in Annaba.
+                                </p>
+                                <div class="project-details">
+                                    <div class="detail">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Completed: 2023</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Annaba, Algeria</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-industry"></i>
+                                        <span>Industrial Grade</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-image">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Factory Upgrade" loading="lazy">
+                                <div class="project-tag">Industrial</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-content">
+                            <div class="project-text">
+                                <div class="project-number">03</div>
+                                <h3>Residential Complex</h3>
+                                <p class="project-description">
+                                    Complete electrical installation for a new residential complex including wiring, lighting, and safety systems for 50 apartments in Oran.
+                                </p>
+                                <div class="project-details">
+                                    <div class="detail">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Completed: 2024</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span>Oran, Algeria</span>
+                                    </div>
+                                    <div class="detail">
+                                        <i class="fas fa-home"></i>
+                                        <span>50 Apartments</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-image">
+                                <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                                     alt="Residential Complex" loading="lazy">
+                                <div class="project-tag">Residential</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="projects-controls">
+                    <button class="projects-prev" aria-label="Previous project">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="projects-dots">
+                        <button class="dot active" data-index="0"></button>
+                        <button class="dot" data-index="1"></button>
+                        <button class="dot" data-index="2"></button>
+                    </div>
+                    <button class="projects-next" aria-label="Next project">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section team">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our <span>Expert Team</span></h2>
+                <p class="section-subtitle">Certified professionals</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/team1.jpg" alt="Alaa Eddine" loading="lazy">
+                    </div>
+                    <div class="team-content">
+                        <h5>Zaoui Alaa Eddine</h5>
+                        <p class="team-degree">Electrical Engineer</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <div class="team-image">
+                        <img src="assets/team2.jpg" alt="Djaafer" loading="lazy">
+                    </div>
+                    <div class="team-content">
+                        <h5>Djaafer Saib</h5>
+                        <p class="team-degree">Electrical Engineer</p>
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Get In <span>Touch</span></h2>
+                <p class="section-subtitle">Contact us for electrical solutions</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h5>Location</h5>
+                            <p>Algiers, Ait Taya, Algeria</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h5>Phone</h5>
+                            <p>05 40 32 56 16</p>
+                            <small>24/7 Emergency Service</small>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h5>Email</h5>
+                            <p>electroteamdz@gmail.com</p>
+                            <small>Response within 24 hours</small>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h5>Working Hours</h5>
+                            <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+                            <small>Sat: 9:00 AM - 2:00 PM</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Restored from previous version -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo">
+                        <span>Electro<span>Team</span></span>
+                    </div>
+                    <p class="footer-description">
+                        Providing reliable electrical solutions since 2020. Certified, insured, and committed to excellence in every project.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#team"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-bolt"></i> Electrical Installation</a></li>
+                        <li><a href="#services"><i class="fas fa-tools"></i> Maintenance & Repair</a></li>
+                        <li><a href="#services"><i class="fas fa-lightbulb"></i> Lighting Solutions</a></li>
+                        <li><a href="#services"><i class="fas fa-shield-alt"></i> Safety Systems</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> Algiers, Ait Taya, Algeria</p>
+                        <p><i class="fas fa-phone"></i> 05 40 32 56 16</p>
+                        <p><i class="fas fa-envelope"></i> electroteamdz@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 Electro Team. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Safety Standards</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
