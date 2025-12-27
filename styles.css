@@ -1079,15 +1079,19 @@ nav.scrolled .language-picker .lang-current:hover {
 }
 
 .feature-navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
 }
 
 .feature-dots {
-  display: flex;
-  gap: 1rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .feature-dot {
@@ -1119,11 +1123,6 @@ nav.scrolled .language-picker .lang-current:hover {
 
 .feature-dot.active::before {
   transform: scaleX(1);
-}
-
-.feature-arrows {
-  display: flex;
-  gap: 1rem;
 }
 
 .projects-section {
@@ -1888,52 +1887,6 @@ nav.scrolled .language-picker .lang-current:hover {
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 0.9rem;
-}
-
-[dir="rtl"] {
-  text-align: right;
-}
-
-[dir="rtl"] .split-text {
-  padding-right: 0;
-  padding-left: 40px;
-}
-
-[dir="rtl"] .hero-buttons,
-[dir="rtl"] .services-controls,
-[dir="rtl"] .feature-navigation,
-[dir="rtl"] .projects-controls {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .detail,
-[dir="rtl"] .feature,
-[dir="rtl"] .stat {
-  flex-direction: row-reverse;
-}
-
-[dir="rtl"] .service-features li {
-  padding-left: 0;
-  padding-right: 24px;
-}
-
-[dir="rtl"] .service-features li::before {
-  left: auto;
-  right: 0;
-}
-
-[dir="rtl"] .lang-dropdown {
-  left: auto;
-  right: 50%;
-  transform: translateX(50%) translateY(-10px);
-}
-
-[dir="rtl"] .language-picker.active .lang-dropdown {
-  transform: translateX(50%) translateY(0);
-}
-
-[dir="rtl"] .gallery-controls {
-  flex-direction: row-reverse;
 }
 
 @media (max-width: 1024px) {
