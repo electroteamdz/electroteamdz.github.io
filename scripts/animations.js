@@ -85,78 +85,120 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ===== SERVICES CAROUSEL FUNCTIONS =====
-    function initServicesCarousel() {
-        const servicesTrack = document.querySelector('.services-track');
-        const serviceCards = document.querySelectorAll('.service-card');
-        const prevBtn = document.querySelector('.services-prev');
-        const nextBtn = document.querySelector('.services-next');
+// ===== SERVICES CAROUSEL FUNCTIONS - FIXED =====
+// ===== SERVICES CAROUSEL FUNCTIONS - FIXED =====
+function initServicesCarousel() {
+    const servicesTrack = document.querySelector('.services-track');
+    const serviceCards = document.querySelectorAll('.service-card');
+    const prevBtn = document.querySelector('.services-prev');
+    const nextBtn = document.querySelector('.services-next');
+    const servicesCarousel = document.querySelector('.services-carousel');
+    
+    if (!servicesTrack || !serviceCards.length) return;
+    
+    let currentSlide = 0;
+    
+    function getVisibleCards() {
+        if (window.innerWidth >= 1024) return 3;
+        if (window.innerWidth >= 768) return 2;
+        return 1;
+    }
+    
+    function updateServicesCarousel() {
+        const visibleCards = getVisibleCards();
+        const totalSlides = Math.ceil(serviceCards.length / visibleCards);
         
-        if (!servicesTrack || !serviceCards.length) return;
+        // Calculate the width of one slide
+        const card = serviceCards[0];
+        if (!card) return;
         
-        let currentPosition = 0;
-        const cardWidth = serviceCards[0].offsetWidth + 30; // width + gap
-        const visibleCards = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
+        const cardStyle = window.getComputedStyle(card);
+        const cardWidth = card.offsetWidth;
+        const marginLeft = parseFloat(cardStyle.marginLeft) || 0;
+        const marginRight = parseFloat(cardStyle.marginRight) || 0;
+        const gap = 18;
         
-        function updateServicesCarousel() {
-            servicesTrack.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
+        const slideWidth = (cardWidth + marginLeft + marginRight + gap) * visibleCards;
+        const translateX = -currentSlide * slideWidth;
+        
+        servicesTrack.style.transform = `translateX(${translateX}px)`;
+        
+        // Update arrow visibility
+        if (prevBtn) {
+            prevBtn.classList.toggle('hidden', currentSlide === 0);
         }
         
-        function nextSlide() {
-            const maxPosition = serviceCards.length - visibleCards;
-            if (currentPosition < maxPosition) {
-                currentPosition++;
-                updateServicesCarousel();
-            }
+        if (nextBtn) {
+            const isLastSlide = currentSlide >= totalSlides - 1 || serviceCards.length <= visibleCards;
+            nextBtn.classList.toggle('hidden', isLastSlide);
         }
-        
-        function prevSlide() {
-            if (currentPosition > 0) {
-                currentPosition--;
-                updateServicesCarousel();
-            }
+    }
+    
+    function nextSlide(e) {
+        if (e) {
+            e.stopPropagation(); // Prevent event bubbling
+            e.preventDefault();
         }
+        const visibleCards = getVisibleCards();
+        const totalSlides = Math.ceil(serviceCards.length / visibleCards);
         
-        // Event listeners
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-        
-        // Touch support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        servicesTrack.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        
-        servicesTrack.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            
-            if (touchEndX < touchStartX - swipeThreshold) {
-                nextSlide();
-            }
-            
-            if (touchEndX > touchStartX + swipeThreshold) {
-                prevSlide();
-            }
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateServicesCarousel();
         }
-        
-        // Update on resize
-        window.addEventListener('resize', () => {
-            const newVisibleCards = window.innerWidth > 1024 ? 3 : window.innerWidth > 768 ? 2 : 1;
-            if (currentPosition > serviceCards.length - newVisibleCards) {
-                currentPosition = Math.max(0, serviceCards.length - newVisibleCards);
-                updateServicesCarousel();
+    }
+    
+    function prevSlide(e) {
+        if (e) {
+            e.stopPropagation(); // Prevent event bubbling
+            e.preventDefault();
+        }
+        if (currentSlide > 0) {
+            currentSlide--;
+            updateServicesCarousel();
+        }
+    }
+    
+    // Event listeners with better handling
+    if (prevBtn) {
+        prevBtn.addEventListener('click', prevSlide);
+        prevBtn.addEventListener('touchstart', prevSlide);
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', nextSlide);
+        nextBtn.addEventListener('touchstart', nextSlide);
+    }
+    
+    // Prevent card clicks from interfering with arrows
+    if (servicesCarousel) {
+        servicesCarousel.addEventListener('click', (e) => {
+            if (e.target.closest('.services-prev') || e.target.closest('.services-next')) {
+                e.stopPropagation();
             }
         });
-        
-        // Initialize
-        updateServicesCarousel();
     }
+    
+    // Resize handling
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const newVisibleCards = getVisibleCards();
+            const newTotalSlides = Math.ceil(serviceCards.length / newVisibleCards);
+            
+            // Adjust current slide if out of bounds
+            if (currentSlide >= newTotalSlides) {
+                currentSlide = Math.max(0, newTotalSlides - 1);
+            }
+            
+            updateServicesCarousel();
+        }, 150);
+    });
+    
+    // Initialize
+    updateServicesCarousel();
+}
     
     // ===== FEATURE CAROUSEL FUNCTIONS =====
     function initFeatureCarousel() {
@@ -213,88 +255,103 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ===== PROJECTS CAROUSEL FUNCTIONS =====
-    function initProjectsCarousel() {
-        const projectItems = document.querySelectorAll('.project-item');
-        const dots = document.querySelectorAll('.projects-dots .dot');
-        const prevBtn = document.querySelector('.projects-prev');
-        const nextBtn = document.querySelector('.projects-next');
-        
-        if (!projectItems.length) return;
-        
-        let currentIndex = 0;
-        
-        function updateProjectsCarousel(index) {
-            // Update items
-            projectItems.forEach((item, i) => {
-                item.classList.remove('active');
-                if (i === index) {
-                    item.classList.add('active');
-                }
-            });
-            
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                if (i === index) {
-                    dot.classList.add('active');
-                }
-            });
-            
-            currentIndex = index;
-        }
-        
-        // Event listeners
-        if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
-                updateProjectsCarousel(newIndex);
-            });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-                const newIndex = (currentIndex + 1) % projectItems.length;
-                updateProjectsCarousel(newIndex);
-            });
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => updateProjectsCarousel(index));
+// ===== PROJECTS CAROUSEL FUNCTIONS =====
+function initProjectsCarousel() {
+    const projectItems = document.querySelectorAll('.project-item');
+    const dots = document.querySelectorAll('.projects-dots .dot');
+    const prevBtn = document.querySelector('.projects-prev');
+    const nextBtn = document.querySelector('.projects-next');
+    const projectsList = document.querySelector('.projects-list');
+    
+    if (!projectItems.length) return;
+    
+    let currentIndex = 0;
+    const isMobile = window.innerWidth <= 768;
+    
+    function updateProjectsCarousel(index) {
+        // Remove active class from all items
+        projectItems.forEach(item => {
+            item.classList.remove('active');
         });
         
-        // Touch support
+        // Add active class to current item
+        projectItems[index].classList.add('active');
+        
+        // Update dots
+        dots.forEach((dot, i) => {
+            dot.classList.remove('active');
+            if (i === index) {
+                dot.classList.add('active');
+            }
+        });
+        
+        currentIndex = index;
+    }
+    
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            const newIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
+            updateProjectsCarousel(newIndex);
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            const newIndex = (currentIndex + 1) % projectItems.length;
+            updateProjectsCarousel(newIndex);
+        });
+    }
+    
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => updateProjectsCarousel(index));
+    });
+    
+    // Touch support for mobile
+    if (projectsList) {
         let touchStartX = 0;
         let touchEndX = 0;
         
-        const carousel = document.querySelector('.projects-carousel');
-        if (carousel) {
-            carousel.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
+        projectsList.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        projectsList.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleProjectsSwipe();
+        }, { passive: true });
+        
+        function handleProjectsSwipe() {
+            const swipeThreshold = 50;
             
-            carousel.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleProjectsSwipe();
-            }, { passive: true });
+            if (touchEndX < touchStartX - swipeThreshold) {
+                const newIndex = (currentIndex + 1) % projectItems.length;
+                updateProjectsCarousel(newIndex);
+            }
             
-            function handleProjectsSwipe() {
-                const swipeThreshold = 50;
-                
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    const newIndex = (currentIndex + 1) % projectItems.length;
-                    updateProjectsCarousel(newIndex);
-                }
-                
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    const newIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
-                    updateProjectsCarousel(newIndex);
-                }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                const newIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
+                updateProjectsCarousel(newIndex);
             }
         }
-        
-        // Initialize
-        updateProjectsCarousel(0);
     }
+    
+    // Handle resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const nowMobile = window.innerWidth <= 768;
+            if (isMobile !== nowMobile) {
+                // Re-initialize if mobile status changed
+                location.reload(); // Or update logic accordingly
+            }
+        }, 250);
+    });
+    
+    // Initialize
+    updateProjectsCarousel(0);
+}
     
     // ===== MOBILE MENU FUNCTIONS =====
     function initMobileMenu() {
