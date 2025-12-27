@@ -1,12 +1,6 @@
-// translation.js - Bilingual support for English and Arabic
-
 const translations = {
     en: {
-        // Loading
         "loading.text": "Powering Your Future...",
-        
-        // Navigation
-        "nav.logo": "ElectroTeam",
         "nav.home": "Home",
         "nav.about": "About",
         "nav.services": "Services",
@@ -14,24 +8,21 @@ const translations = {
         "nav.projects": "Projects",
         "nav.team": "Team",
         "nav.contact": "Contact",
-        
-        // Hero Section
-        "hero.title": "Powering Your<br /><span>Future</span> With<br />Modern Energy",
-        "hero.subtitle": "Reliable electricity solutions for homes and businesses across Algeria.",
+        "hero.title": "Where<br /><span>Quality</span> Meets<br /><span>Power</span>",
+        "hero.subtitle": "Reliable electricity solutions for industrial commercial and also for home across algeria",
         "hero.consultation": "Get Free Consultation",
-        "hero.services": "Our Services",
-        "hero.stats.years": "+ 5 Years",
-        "hero.stats.yearsText": "in the Business",
+        "hero.services": "Our Services","hero.stats.certified": "100%",
+"hero.stats.certifiedText": "Certified Team",
+"hero.stats.projects": "50+",
+"hero.stats.projectsText": "Projects Completed",
         "hero.stats.support": "24/7",
         "hero.stats.supportText": "Emergency Support",
         "hero.stats.quality": "100%",
         "hero.stats.qualityText": "Quality Guarantee",
-        
-        // About Section
         "about.title": "About <span>Electro Team</span>",
         "about.subtitle": "Leading the energy revolution since 2020",
         "about.slide1.title": "Who We Are",
-        "about.slide1.description": "At Electro Team, we are dedicated to delivering top-tier electrical solutions across Algeria. With years of expertise, our team of skilled professionals specializes in electrical installations, maintenance, and troubleshooting.",
+        "about.slide1.description": "At Electro Team, we are dedicated to delivering high-quality electrical solutions across Algeria. With years of experience, our company is led by qualified electrical engineers and supported by a team of skilled professionals specializing in electrical installations, maintenance, and troubleshooting. We focus on safety, reliability, and efficiency to deliver dependable solutions tailored to our clients' needs.",
         "about.slide1.feature1": "Licensed & Certified",
         "about.slide1.feature2": "Safety First Approach",
         "about.slide2.title": "Our Mission & Vision",
@@ -42,33 +33,28 @@ const translations = {
         "about.slide3.description": "We prioritize safety in every project, following strict protocols and using certified safety equipment. Building lasting relationships with our clients through transparent communication and quality work.",
         "about.slide3.feature1": "Safety Certified",
         "about.slide3.feature2": "Trust & Reliability",
-        
-        // Services Section
+        "services.automation.title": "Industrial Automation Services (Siemens Certified)",
+"services.automation.description": "We provide industrial automation solutions delivered by Siemens-certified professionals, specializing in PLC systems, control panels, and process automation. Our services are designed to improve efficiency, reliability, and control across industrial operations.",
+"services.automation.feature1": "Siemens PLC programming & commissioning",
+"services.automation.feature2": "Industrial control panel design & installation",
+"services.automation.feature3": "Automation system maintenance & troubleshooting",
         "services.title": "Our <span>Services</span>",
         "services.subtitle": "Comprehensive electrical solutions for every need",
         "services.card1.title": "Electrical Installation",
         "services.card1.description": "Comprehensive electrical setups for new buildings, renovations, and expansions.",
         "services.card1.feature1": "Complete wiring solutions",
-        "services.card1.feature2": "Panel upgrades",
-        "services.card1.feature3": "Circuit installations",
+        "services.card1.feature2": "Commercial lighting",
+        "services.card1.feature3": "Lighting Solutions",
         "services.card2.title": "Maintenance & Repair",
         "services.card2.description": "Regular inspections and prompt repairs to keep systems running smoothly.",
         "services.card2.feature1": "24/7 emergency service",
         "services.card2.feature2": "Preventive maintenance",
         "services.card2.feature3": "Troubleshooting",
-        "services.card3.title": "Lighting Solutions",
-        "services.card3.description": "Design and installation of efficient lighting for all spaces.",
-        "services.card3.feature1": "LED lighting systems",
-        "services.card3.feature2": "Smart home lighting",
-        "services.card3.feature3": "Commercial lighting",
         "services.card4.title": "Safety Systems",
-        "services.card4.description": "Installation of security cameras, alarm systems, and electrical safety equipment.",
-        "services.card4.feature1": "Security camera installation",
-        "services.card4.feature2": "Alarm systems",
-        "services.card4.feature3": "Electrical safety equipment",
-        "services.cta": "Learn More",
-        
-        // Why Us Section
+        "services.card4.description": "Installation of advanced safety and protection systems designed to secure facilities, protect equipment, and ensure operational continuity in commercial and industrial environments.",
+        "services.card4.feature1": "Security camera (CCTV) and alarm system installation",
+        "services.card4.feature2": "Uninterruptible Power Supply (UPS) systems",
+        "services.card4.feature3": "Fire detection and alarm systems",
         "whyus.title": "Why <span>Choose Us</span>",
         "whyus.subtitle": "The Electro Team difference",
         "whyus.feature1.title": "Certified Professionals",
@@ -87,8 +73,6 @@ const translations = {
         "whyus.dot2": "24/7 Service",
         "whyus.dot3": "Quality",
         "whyus.dot4": "Pricing",
-        
-        // Projects Section
         "projects.title": "Our <span>Projects</span>",
         "projects.subtitle": "Successfully completed projects across Algeria",
         "projects.project1.title": "Commercial Office Building",
@@ -109,14 +93,10 @@ const translations = {
         "projects.tag.commercial": "Commercial",
         "projects.tag.industrial": "Industrial",
         "projects.tag.residential": "Residential",
-        
-        // Team Section
         "team.title": "Our <span>Expert Team</span>",
         "team.subtitle": "Certified professionals",
         "team.member1.position": "Electrical Engineer",
         "team.member2.position": "Electrical Engineer",
-        
-        // Contact Section
         "contact.title": "Get In <span>Touch</span>",
         "contact.subtitle": "Contact us for electrical solutions",
         "contact.location": "Location",
@@ -134,15 +114,11 @@ const translations = {
         "contact.phonePlaceholder": "Phone Number",
         "contact.messagePlaceholder": "Your Message",
         "contact.sendButton": "Send Message",
-        
-        // Footer
-        "footer.logo": "ElectroTeam",
+        "footer.logo": "Electro<span>Team</span>",
         "footer.description": "Providing reliable electrical solutions since 2020. Certified, insured, and committed to excellence in every project.",
         "footer.linksTitle": "Quick Links",
         "footer.servicesTitle": "Our Services",
         "footer.contactTitle": "Contact Info",
-        "footer.emergencyTitle": "24/7 Emergency Service",
-        "footer.emergencyNumber": "Call Now: 05 40 32 56 16",
         "footer.copyright": "© 2025 Electro Team. All rights reserved.",
         "footer.privacy": "Privacy Policy",
         "footer.terms": "Terms of Service",
@@ -150,11 +126,7 @@ const translations = {
     },
     
     ar: {
-        // Loading
         "loading.text": "نشغيل مستقبلك...",
-        
-        // Navigation
-        "nav.logo": "إلكترو<span>تيم</span>",
         "nav.home": "الرئيسية",
         "nav.about": "من نحن",
         "nav.services": "خدماتنا",
@@ -162,24 +134,21 @@ const translations = {
         "nav.projects": "مشاريعنا",
         "nav.team": "فريقنا",
         "nav.contact": "اتصل بنا",
-        
-        // Hero Section
-        "hero.title": "تشغيل <br /><span>مستقبلك</span> <br />بالطاقة الحديثة",
-        "hero.subtitle": "حلول كهربائية موثوقة للمنازل والشركات عبر الجزائر.",
+        "hero.title": "حيث<br /><span>الجودة</span> تلتقي<br /><span>بالطاقة",
+        "hero.subtitle": "حلول كهربائية موثوقة للصناعة والتجارة وكذلك للمنازل في جميع أنحاء الجزائر",
         "hero.consultation": "احصل على استشارة مجانية",
-        "hero.services": "خدماتنا",
-        "hero.stats.years": "+ 5 سنوات",
-        "hero.stats.yearsText": "في مجال العمل",
+        "hero.services": "خدماتنا","hero.stats.certified": "100%",
+"hero.stats.certifiedText": "فريق معتمد",
+"hero.stats.projects": "50+",
+"hero.stats.projectsText": "مشاريع مكتملة",
         "hero.stats.support": "24/7",
-        "hero.stats.supportText": "دعم طوارئ",
+        "hero.stats.supportText": "دعم الطوارئ",
         "hero.stats.quality": "100%",
         "hero.stats.qualityText": "ضمان الجودة",
-        
-        // About Section
         "about.title": "عن <span>إلكترو تيم</span>",
         "about.subtitle": "قيادة ثورة الطاقة منذ 2020",
         "about.slide1.title": "من نحن",
-        "about.slide1.description": "في إلكترو تيم، نحن ملتزمون بتقديم حلول كهربائية من الدرجة الأولى عبر الجزائر. مع سنوات من الخبرة، يتخصص فريقنا من المحترفين المهرة في التركيبات الكهربائية والصيانة واستكشاف الأخطاء وإصلاحها.",
+        "about.slide1.description": "في إلكترو تيم، نحن ملتزمون بتقديم حلول كهربائية عالية الجودة في جميع أنحاء الجزائر. مع سنوات من الخبرة، تقود شركتنا مهندسون كهربائيون مؤهلون ويدعمهم فريق من المحترفين المهرة المتخصصين في التركيبات الكهربائية والصيانة واستكشاف الأخطاء وإصلاحها. نحن نركز على السلامة والموثوقية والكفاءة لتقديم حلول موثوقة مصممة خصيصًا لاحتياجات عملائنا.",
         "about.slide1.feature1": "مرخص ومعتمد",
         "about.slide1.feature2": "نهج السلامة أولاً",
         "about.slide2.title": "مهمتنا ورؤيتنا",
@@ -190,33 +159,28 @@ const translations = {
         "about.slide3.description": "نعطي الأولوية للسلامة في كل مشروع، ونتبع بروتوكولات صارمة ونستخدم معدات سلامة معتمدة. بناء علاقات دائمة مع عملائنا من خلال التواصل الشفاف والعمل الجيد.",
         "about.slide3.feature1": "معتمد في السلامة",
         "about.slide3.feature2": "الثقة والموثوقية",
-        
-        // Services Section
         "services.title": "خدمات<span>نا</span>",
         "services.subtitle": "حلول كهربائية شاملة لكل الاحتياجات",
+        "services.automation.title": "خدمات الأتمتة الصناعية (معتمد من سيمنز)",
+"services.automation.description": "نقدم حلول الأتمتة الصناعية التي يقدمها محترفون معتمدون من سيمنز، متخصصون في أنظمة PLC، لوحات التحكم، وأتمتة العمليات. تم تصميم خدماتنا لتحسين الكفاءة والموثوقية والتحكم في العمليات الصناعية.",
+"services.automation.feature1": "برمجة وتشغيل Siemens PLC",
+"services.automation.feature2": "تصميم وتركيب لوحات التحكم الصناعية",
+"services.automation.feature3": "صيانة واستكشاف أخطاء أنظمة الأتمتة",
         "services.card1.title": "التركيبات الكهربائية",
         "services.card1.description": "تركيبات كهربائية شاملة للمباني الجديدة والتجديدات والتوسعات.",
         "services.card1.feature1": "حلول الأسلاك الكاملة",
-        "services.card1.feature2": "ترقية اللوحات",
-        "services.card1.feature3": "تركيب الدوائر",
+        "services.card1.feature2": "إضاءة تجارية",
+        "services.card1.feature3": "حلول الإضاءة",
         "services.card2.title": "الصيانة والإصلاح",
         "services.card2.description": "فحوصات منتظمة وإصلاحات فورية للحفاظ على سير الأنظمة بسلاسة.",
         "services.card2.feature1": "خدمة طوارئ 24/7",
         "services.card2.feature2": "صيانة وقائية",
         "services.card2.feature3": "استكشاف الأخطاء",
-        "services.card3.title": "حلول الإضاءة",
-        "services.card3.description": "تصميم وتركيب إضاءة فعالة لجميع المساحات.",
-        "services.card3.feature1": "أنظمة إضاءة LED",
-        "services.card3.feature2": "إضاءة المنزل الذكي",
-        "services.card3.feature3": "إضاءة تجارية",
         "services.card4.title": "أنظمة السلامة",
-        "services.card4.description": "تركيب كاميرات مراقبة وأنظمة إنذار ومعدات السلامة الكهربائية.",
-        "services.card4.feature1": "تركيب كاميرات المراقبة",
-        "services.card4.feature2": "أنظمة الإنذار",
-        "services.card4.feature3": "معدات السلامة الكهربائية",
-        "services.cta": "تعرف أكثر",
-        
-        // Why Us Section
+        "services.card4.description": "تركيب أنظمة السلامة والحماية المتقدمة المصممة لتأمين المرافق وحماية المعدات وضمان استمرارية التشغيل في البيئات التجارية والصناعية.",
+        "services.card4.feature1": "تركيب كاميرات المراقبة وأنظمة الإنذار",
+        "services.card4.feature2": "أنظمة إمداد الطاقة غير المنقطع (UPS)",
+        "services.card4.feature3": "أنظمة الكشف عن الحريق والإنذار",
         "whyus.title": "لماذا <span>تختارنا</span>",
         "whyus.subtitle": "الفرق في إلكترو تيم",
         "whyus.feature1.title": "محترفون معتمدون",
@@ -235,8 +199,6 @@ const translations = {
         "whyus.dot2": "خدمة 24/7",
         "whyus.dot3": "الجودة",
         "whyus.dot4": "الأسعار",
-        
-        // Projects Section
         "projects.title": "مشاريع<span>نا</span>",
         "projects.subtitle": "مشاريع تم إنجازها بنجاح عبر الجزائر",
         "projects.project1.title": "مبنى مكتبي تجاري",
@@ -257,14 +219,10 @@ const translations = {
         "projects.tag.commercial": "تجاري",
         "projects.tag.industrial": "صناعي",
         "projects.tag.residential": "سكني",
-        
-        // Team Section
         "team.title": "فريق<span>نا الخبير</span>",
         "team.subtitle": "محترفون معتمدون",
         "team.member1.position": "مهندس كهربائي",
         "team.member2.position": "مهندس كهربائي",
-        
-        // Contact Section
         "contact.title": "تواصل <span>معنا</span>",
         "contact.subtitle": "اتصل بنا للحصول على حلول كهربائية",
         "contact.location": "الموقع",
@@ -282,81 +240,198 @@ const translations = {
         "contact.phonePlaceholder": "رقم الهاتف",
         "contact.messagePlaceholder": "رسالتك",
         "contact.sendButton": "أرسل الرسالة",
-        
-        // Footer
         "footer.logo": "إلكترو<span>تيم</span>",
         "footer.description": "نقدم حلول كهربائية موثوقة منذ 2020. مرخصون ومؤمنون وملتزمون بالتميز في كل مشروع.",
         "footer.linksTitle": "روابط سريعة",
         "footer.servicesTitle": "خدماتنا",
         "footer.contactTitle": "معلومات الاتصال",
-        "footer.emergencyTitle": "خدمة طوارئ 24/7",
-        "footer.emergencyNumber": "اتصل الآن: 05 40 32 56 16",
         "footer.copyright": "© 2025 إلكترو تيم. جميع الحقوق محفوظة.",
         "footer.privacy": "سياسة الخصوصية",
         "footer.terms": "شروط الخدمة",
         "footer.safety": "معايير السلامة"
+    },
+    
+    fr: {
+        "loading.text": "Alimenter Votre Avenir...",
+        "nav.home": "Accueil",
+        "nav.about": "À propos",
+        "nav.services": "Services",
+        "nav.whyus": "Pourquoi Nous",
+        "nav.projects": "Projets",
+        "nav.team": "Équipe",
+        "nav.contact": "Contact",
+        "hero.title": "Où<br /><span>la Qualité</span> Rencontre<br /><span>la Puissance</span>",
+        "hero.subtitle": "Solutions électriques fiables pour l'industrie, le commerce et les maisons à travers l'Algérie",
+        "hero.consultation": "Obtenir une Consultation Gratuite",
+        "hero.services": "Nos Services","hero.stats.certified": "100%",
+"hero.stats.certifiedText": "Équipe Certifiée",
+"hero.stats.projects": "50+",
+"hero.stats.projectsText": "Projets Réalisés",
+        "hero.stats.support": "24/7",
+        "hero.stats.supportText": "Support d'Urgence",
+        "hero.stats.quality": "100%",
+        "hero.stats.qualityText": "Garantie Qualité",
+        "about.title": "À propos <span>d'Electro Team</span>",
+        "about.subtitle": "Leader de la révolution énergétique depuis 2020",
+        "about.slide1.title": "Qui Nous Sommes",
+        "about.slide1.description": "Chez Electro Team, nous nous consacrons à fournir des solutions électriques de haute qualité à travers l'Algérie. Avec des années d'expérience, notre entreprise est dirigée par des ingénieurs électriciens qualifiés et soutenue par une équipe de professionnels spécialisés dans les installations électriques, la maintenance et le dépannage. Nous nous concentrons sur la sécurité, la fiabilité et l'efficacité pour fournir des solutions fiables adaptées aux besoins de nos clients.",
+        "about.slide1.feature1": "Licencié et Certifié",
+        "about.slide1.feature2": "Approche Sécurité d'Abord",
+        "about.slide2.title": "Notre Mission et Vision",
+        "about.slide2.description": "Fournir des solutions électriques fiables, efficaces et sûres qui alimentent les maisons et les entreprises à travers l'Algérie, en utilisant les dernières technologies et des matériaux certifiés.",
+        "about.slide2.feature1": "Satisfaction Client",
+        "about.slide2.feature2": "Conduit par l'Innovation",
+        "about.slide3.title": "Nos Valeurs Fondamentales",
+        "about.slide3.description": "Nous donnons la priorité à la sécurité dans chaque projet, en suivant des protocoles stricts et en utilisant des équipements de sécurité certifiés. Établir des relations durables avec nos clients grâce à une communication transparente et un travail de qualité.",
+        "about.slide3.feature1": "Certifié en Sécurité",
+        "about.slide3.feature2": "Confiance et Fiabilité",
+        "services.title": "Nos <span>Services</span>",
+        "services.subtitle": "Solutions électriques complètes pour chaque besoin",
+        "services.automation.title": "Services d'Automatisation Industrielle (Certifié Siemens)",
+"services.automation.description": "Nous fournissons des solutions d'automatisation industrielle délivrées par des professionnels certifiés Siemens, spécialisés dans les systèmes PLC, les tableaux de commande et l'automatisation des processus. Nos services sont conçus pour améliorer l'efficacité, la fiabilité et le contrôle des opérations industrielles.",
+"services.automation.feature1": "Programmation et mise en service Siemens PLC",
+"services.automation.feature2": "Conception et installation de panneaux de contrôle industriels",
+"services.automation.feature3": "Maintenance et dépannage des systèmes d'automatisation",
+        "services.card1.title": "Installation Électrique",
+        "services.card1.description": "Installations électriques complètes pour nouveaux bâtiments, rénovations et extensions.",
+        "services.card1.feature1": "Solutions de câblage complètes",
+        "services.card1.feature2": "Éclairage commercial",
+        "services.card1.feature3": "Solutions d'éclairage",
+        "services.card2.title": "Maintenance et Réparation",
+        "services.card2.description": "Inspections régulières et réparations rapides pour maintenir les systèmes en bon fonctionnement.",
+        "services.card2.feature1": "Service d'urgence 24/7",
+        "services.card2.feature2": "Maintenance préventive",
+        "services.card2.feature3": "Dépannage",
+        "services.card4.title": "Systèmes de Sécurité",
+        "services.card4.description": "Installation de systèmes de sécurité et de protection avancés conçus pour sécuriser les installations, protéger les équipements et assurer la continuité opérationnelle dans les environnements commerciaux et industriels.",
+        "services.card4.feature1": "Installation de caméras de sécurité et systèmes d'alarme",
+        "services.card4.feature2": "Systèmes d'alimentation sans interruption (UPS)",
+        "services.card4.feature3": "Systèmes de détection et d'alarme incendie",
+        "whyus.title": "Pourquoi <span>Nous Choisir</span>",
+        "whyus.subtitle": "La différence Electro Team",
+        "whyus.feature1.title": "Professionnels Certifiés",
+        "whyus.feature1.description": "Tous nos électriciens sont licenciés, assurés et continuellement formés sur les derniers codes électriques et normes de sécurité.",
+        "whyus.feature1.badge": "Licencié",
+        "whyus.feature2.title": "Service d'Urgence 24/7",
+        "whyus.feature2.description": "Les urgences électriques n'attendent pas les heures de bureau. C'est pourquoi nous proposons des services d'urgence 24h/24 et 7j/7 pour les réparations urgentes.",
+        "whyus.feature2.badge": "Toujours Disponible",
+        "whyus.feature3.title": "Garantie Qualité",
+        "whyus.feature3.description": "Toutes nos installations sont accompagnées de garanties complètes. Nous soutenons notre travail et assurons une satisfaction totale du client.",
+        "whyus.feature3.badge": "Garantie 5 Ans",
+        "whyus.feature4.title": "Tarification Transparente",
+        "whyus.feature4.description": "Pas de coûts cachés. Nous fournissons des devis détaillés et expliquons chaque aspect du travail avant de commencer tout projet.",
+        "whyus.feature4.badge": "Pas de Surprises",
+        "whyus.dot1": "Certifié",
+        "whyus.dot2": "Service 24/7",
+        "whyus.dot3": "Qualité",
+        "whyus.dot4": "Tarification",
+        "projects.title": "Nos <span>Projets</span>",
+        "projects.subtitle": "Projets réalisés avec succès à travers l'Algérie",
+        "projects.project1.title": "Bâtiment de Bureaux Commercial",
+        "projects.project1.description": "Installation électrique complète incluant générateurs de secours, éclairage d'urgence et système de gestion de l'énergie pour un complexe de bureaux moderne de 10 étages à Alger.",
+        "projects.project1.date": "Terminé: 2023",
+        "projects.project1.location": "Alger, Algérie",
+        "projects.project1.detail": "10 Étages",
+                "projects.project2.title": "Modernisation d'Usine Industrielle",
+        "projects.project2.description": "Refonte électrique complète avec nouveaux systèmes de contrôle, mises à niveau de sécurité et éclairage économe en énergie pour augmenter l'efficacité de production à Annaba.",
+        "projects.project2.date": "Terminé: 2023",
+        "projects.project2.location": "Annaba, Algérie",
+        "projects.project2.detail": "Grade Industriel",
+        "projects.project3.title": "Complexe Résidentiel",
+        "projects.project3.description": "Installation électrique complète pour un nouveau complexe résidentiel incluant câblage, éclairage et systèmes de sécurité pour 50 appartements à Oran.",
+        "projects.project3.date": "Terminé: 2024",
+        "projects.project3.location": "Oran, Algérie",
+        "projects.project3.detail": "50 Appartements",
+        "projects.tag.commercial": "Commercial",
+        "projects.tag.industrial": "Industriel",
+        "projects.tag.residential": "Résidentiel",
+        "team.title": "Notre <span>Équipe d'Experts</span>",
+        "team.subtitle": "Professionnels certifiés",
+        "team.member1.position": "Ingénieur Électricien",
+        "team.member2.position": "Ingénieur Électricien",
+        "contact.title": "Entrez en <span>Contact</span>",
+        "contact.subtitle": "Contactez-nous pour des solutions électriques",
+        "contact.location": "Localisation",
+        "contact.locationText": "Alger, Ait Taya, Algérie",
+        "contact.phone": "Téléphone",
+        "contact.emergency": "Service d'Urgence 24/7",
+        "contact.email": "Email",
+        "contact.response": "Réponse sous 24 heures",
+        "contact.hoursTitle": "Heures d'Ouverture",
+        "contact.hoursWeek": "Lun - Ven: 8:00 - 18:00",
+        "contact.hoursSat": "Sam: 9:00 - 14:00",
+        "contact.formTitle": "Envoyez-nous un Message",
+        "contact.namePlaceholder": "Votre Nom",
+        "contact.emailPlaceholder": "Votre Email",
+        "contact.phonePlaceholder": "Numéro de Téléphone",
+        "contact.messagePlaceholder": "Votre Message",
+        "contact.sendButton": "Envoyer le Message",
+        "footer.logo": "Electro<span>Team</span>",
+        "footer.description": "Fournissant des solutions électriques fiables depuis 2020. Certifié, assuré et engagé à l'excellence dans chaque projet.",
+        "footer.linksTitle": "Liens Rapides",
+        "footer.servicesTitle": "Nos Services",
+        "footer.contactTitle": "Informations de Contact",
+        "footer.copyright": "© 2025 Electro Team. Tous droits réservés.",
+        "footer.privacy": "Politique de Confidentialité",
+        "footer.terms": "Conditions de Service",
+        "footer.safety": "Normes de Sécurité"
     }
 };
 
-// Current language
 let currentLang = 'en';
 
-// Function to translate the page
 function translatePage(lang) {
     currentLang = lang;
     
-    // Update HTML direction
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
     
-    // Update all elements with data-i18n attribute
+    const langTranslations = translations[lang];
+    if (!langTranslations) return;
+    
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        
-        if (translations[lang] && translations[lang][key]) {
-            if (element.hasAttribute('data-i18n-html')) {
-                element.innerHTML = translations[lang][key];
-            } else {
-                element.textContent = translations[lang][key];
-            }
-        }
+        const translation = langTranslations[key];
+            element.textContent = translation;
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(element => {
+        const key = element.getAttribute('data-i18n-html');
+        const translation = langTranslations[key];
+            element.innerHTML = translation;
     });
     
-    // Update placeholder texts
     document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
+        const translation = langTranslations[key];
         
-        if (translations[lang] && translations[lang][key]) {
-            element.placeholder = translations[lang][key];
+        if (translation) {
+            element.placeholder = translation;
         }
     });
     
-    // Update language picker display
     const langCodeElements = document.querySelectorAll('.lang-code');
     langCodeElements.forEach(element => {
+        if (element.closest('.lang-option')) {
+            return;
+        }
         element.textContent = lang.toUpperCase();
     });
     
-    // Save language preference to localStorage
     localStorage.setItem('preferredLang', lang);
     
     console.log(`Language changed to ${lang}`);
 }
 
-// Initialize translation on page load
 document.addEventListener('DOMContentLoaded', function() {
-    // Check for saved language preference
     const savedLang = localStorage.getItem('preferredLang') || 'en';
     translatePage(savedLang);
     
-    // Set up language picker event listeners
     const langOptions = document.querySelectorAll('.lang-option');
     langOptions.forEach(option => {
         option.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
             translatePage(lang);
             
-            // Close dropdown
             const languagePickers = document.querySelectorAll('.language-picker');
             languagePickers.forEach(picker => {
                 picker.classList.remove('active');
