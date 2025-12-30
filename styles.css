@@ -633,20 +633,15 @@ nav.scrolled .language-picker .lang-current:hover {
   min-height: 100vh;
 }
 
-.hero-video-container {
+.background-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
-}
-
-.hero-video {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
   filter: brightness(0.4);
+  z-index: 0;
 }
 
 .hero-content {
@@ -2677,4 +2672,5 @@ nav.scrolled .language-picker .lang-current:hover {
   .service-image {
     height: 150px;
   }
+
 }
