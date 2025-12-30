@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLanguagePicker();
     
     // ===== TOUCH SUPPORT FOR ALL CAROUSELS =====
-    initTouchSupport();
+    //initTouchSupport();
     
     // ===== FIXED CAROUSEL CONTROLS =====
     positionCarouselControls();
@@ -844,4 +844,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize fixed controls on load
     window.addEventListener('load', positionCarouselControls);
     window.addEventListener('resize', positionCarouselControls);
+
 });
