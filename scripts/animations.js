@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!card) return;
             
             const cardWidth = card.offsetWidth;
-            const gap = 30;
+            const gap = 20;
             const slideWidth = (cardWidth + gap) * visibleCards;
             
             // Use CSS transform for smooth animation
@@ -283,12 +283,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     e.preventDefault();
                     const newIndex = (index + 1) % featureDots.length;
                     updateFeatureCarousel(newIndex);
-                    featureDots[newIndex].focus();
                 } else if (e.key === 'ArrowLeft') {
                     e.preventDefault();
                     const newIndex = (index - 1 + featureDots.length) % featureDots.length;
                     updateFeatureCarousel(newIndex);
-                    featureDots[newIndex].focus();
                 }
             });
         });
@@ -396,16 +394,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileSidebar.classList.add('active');
             navToggle.setAttribute('aria-expanded', 'true');
             
-            // Focus trap for accessibility
-            const firstFocusable = mobileSidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            if (firstFocusable) firstFocusable.focus();
         }
         
         function closeMobileMenu() {
             mobileOverlay.classList.remove('active');
             mobileSidebar.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
-            navToggle.focus();
         }
         
         // Event listeners
@@ -423,25 +417,6 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileSidebar.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeMobileMenu();
-            }
-            
-            // Focus trap
-            if (e.key === 'Tab') {
-                const focusableElements = mobileSidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-                
-                if (e.shiftKey) {
-                    if (document.activeElement === firstElement) {
-                        lastElement.focus();
-                        e.preventDefault();
-                    }
-                } else {
-                    if (document.activeElement === lastElement) {
-                        firstElement.focus();
-                        e.preventDefault();
-                    }
-                }
             }
         });
         
@@ -521,7 +496,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     picker.classList.remove('active');
                     const langCurrent = picker.querySelector('.lang-current');
                     if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
-                    langCurrent.focus();
                 }
             });
             
