@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initLanguagePicker();
     
     // ===== TOUCH SUPPORT FOR ALL CAROUSELS =====
-    //initTouchSupport();
     
     // ===== FIXED CAROUSEL CONTROLS =====
     positionCarouselControls();
@@ -145,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!servicesTrack || !serviceCards.length) return;
         
         let currentSlide = 0;
-        let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
@@ -221,63 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateServicesCarousel();
             }
         }
-        
-        // Touch and mouse drag support
-        function startDrag(e) {
-            if (window.innerWidth <= 768) {
-                isDragging = true;
-                startPos = getPositionX(e);
-                prevTranslate = currentTranslate;
-                servicesTrack.style.cursor = 'grabbing';
-                servicesTrack.style.userSelect = 'none';
-                animationID = requestAnimationFrame(animation);
-            }
-        }
-        
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const currentPosition = getPositionX(e);
-            currentTranslate = prevTranslate + currentPosition - startPos;
-        }
-        
-        function endDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            cancelAnimationFrame(animationID);
-            servicesTrack.style.cursor = 'grab';
-            servicesTrack.style.userSelect = '';
-            
-            const movedBy = currentTranslate - prevTranslate;
-            const visibleCards = getVisibleCards();
-            const card = serviceCards[0];
-            const gap = 30;
-            const cardWidth = card.offsetWidth;
-            const slideWidth = (cardWidth + gap) * visibleCards;
-            
-            // If drag was significant enough, change slide
-            if (Math.abs(movedBy) > slideWidth * 0.1) {
-                if (movedBy > 0) {
-                    prevSlide();
-                } else {
-                    nextSlide();
-                }
-            }
-            
-            // Reset position
-            updateServicesCarousel();
-        }
-        
-        function getPositionX(e) {
-            return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        }
-        
-        function animation() {
-            if (isDragging) {
-                servicesTrack.style.transform = `translateX(${currentTranslate}px)`;
-                requestAnimationFrame(animation);
-            }
-        }
+    
         
         // Event listeners
         if (prevBtn) {
@@ -289,17 +231,6 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.addEventListener('click', nextSlide);
             nextBtn.addEventListener('touchstart', nextSlide);
         }
-        
-        // Touch events for mobile
-        servicesCarousel.addEventListener('touchstart', startDrag);
-        servicesCarousel.addEventListener('touchmove', drag);
-        servicesCarousel.addEventListener('touchend', endDrag);
-        
-        // Mouse events for desktop
-        servicesCarousel.addEventListener('mousedown', startDrag);
-        servicesCarousel.addEventListener('mousemove', drag);
-        servicesCarousel.addEventListener('mouseup', endDrag);
-        servicesCarousel.addEventListener('mouseleave', endDrag);
         
         // Keyboard navigation
         servicesCarousel.addEventListener('keydown', (e) => {
@@ -463,7 +394,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!projectItems.length) return;
         
         let currentIndex = 0;
-        let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
@@ -511,58 +441,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Touch and drag functions
-        function startDrag(e) {
-            if (window.innerWidth <= 768) {
-                isDragging = true;
-                startPos = getPositionX(e);
-                prevTranslate = currentTranslate;
-                projectsList.style.cursor = 'grabbing';
-                projectsList.style.userSelect = 'none';
-                animationID = requestAnimationFrame(animation);
-            }
-        }
-        
-        function drag(e) {
-            if (!isDragging) return;
-            e.preventDefault();
-            const currentPosition = getPositionX(e);
-            currentTranslate = prevTranslate + currentPosition - startPos;
-        }
-        
-        function endDrag() {
-            if (!isDragging) return;
-            isDragging = false;
-            cancelAnimationFrame(animationID);
-            projectsList.style.cursor = 'grab';
-            projectsList.style.userSelect = '';
-            
-            const movedBy = currentTranslate - prevTranslate;
-            
-            // If drag was significant enough, change slide
-            if (Math.abs(movedBy) > 50) {
-                if (movedBy > 0) {
-                    prevProject();
-                } else {
-                    nextProject();
-                }
-            }
-            
-            // Reset position
-            updateProjectsCarousel(currentIndex);
-        }
-        
-        function getPositionX(e) {
-            return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
-        }
-        
-        function animation() {
-            if (isDragging) {
-                projectsList.style.transform = `translateX(${currentTranslate}px)`;
-                requestAnimationFrame(animation);
-            }
-        }
-        
         function nextProject() {
             const newIndex = (currentIndex + 1) % projectItems.length;
             updateProjectsCarousel(newIndex);
@@ -591,19 +469,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
-        // Touch support for mobile
-        if (projectsList) {
-            projectsList.addEventListener('touchstart', startDrag, { passive: true });
-            projectsList.addEventListener('touchmove', drag, { passive: false });
-            projectsList.addEventListener('touchend', endDrag, { passive: true });
-            
-            // Mouse support for desktop
-            projectsList.addEventListener('mousedown', startDrag);
-            projectsList.addEventListener('mousemove', drag);
-            projectsList.addEventListener('mouseup', endDrag);
-            projectsList.addEventListener('mouseleave', endDrag);
-        }
         
         // Keyboard navigation
         projectsCarousel.addEventListener('keydown', (e) => {
@@ -844,5 +709,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize fixed controls on load
     window.addEventListener('load', positionCarouselControls);
     window.addEventListener('resize', positionCarouselControls);
-
 });
