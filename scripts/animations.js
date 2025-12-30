@@ -1,4 +1,4 @@
-// animations.js - Carousel animations and mobile menu with enhanced mobile support
+// animations.js - Carousel animations WITHOUT any touch/swipe support
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Animations initialized');
@@ -21,11 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== LANGUAGE PICKER =====
     initLanguagePicker();
     
-    // ===== TOUCH SUPPORT FOR ALL CAROUSELS =====
-    
-    // ===== FIXED CAROUSEL CONTROLS =====
-    positionCarouselControls();
-    
     // ===== SPLIT CAROUSEL FUNCTIONS =====
     function initSplitCarousel() {
         const splitSlides = document.querySelectorAll('.split-slide');
@@ -33,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const dots = document.querySelectorAll('.split-dots .dot');
         const prevBtn = document.querySelector('.split-prev');
         const nextBtn = document.querySelector('.split-next');
-        const imageContainer = document.querySelector('.image-container');
         
         if (!splitSlides.length) {
             console.log('No split slides found');
@@ -89,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Carousel updated to index:', index);
         }
         
-        // Event listeners
+        // Event listeners - ONLY BUTTON CLICKS
         if (prevBtn) {
             prevBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -125,15 +119,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Initialize with first slide active
         updateSplitCarousel(0);
-        
-        // Log initial state
-        setTimeout(() => {
-            console.log('Initial state - Active image opacity:', 
-                window.getComputedStyle(document.querySelector('.split-image img.active')).opacity);
-        }, 100);
     }
     
-    // ===== SERVICES CAROUSEL FUNCTIONS - WITH TOUCH SUPPORT =====
+    // ===== SERVICES CAROUSEL FUNCTIONS - NO TOUCH/SWIPE =====
     function initServicesCarousel() {
         const servicesTrack = document.querySelector('.services-track');
         const serviceCards = document.querySelectorAll('.service-card');
@@ -144,10 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!servicesTrack || !serviceCards.length) return;
         
         let currentSlide = 0;
-        let startPos = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationID;
         
         function getVisibleCards() {
             if (window.innerWidth >= 1024) return 3;
@@ -188,11 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     'No more services available' :
                     `Next services, currently viewing set ${currentSlide + 1} of ${totalSlides}`);
             }
-            
-            // Update aria live region for screen readers
-            const startCard = currentSlide * visibleCards + 1;
-            const endCard = Math.min((currentSlide + 1) * visibleCards, serviceCards.length);
-            servicesCarousel.setAttribute('aria-label', `Services ${startCard} to ${endCard} of ${serviceCards.length}`);
         }
         
         function nextSlide(e) {
@@ -219,36 +198,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateServicesCarousel();
             }
         }
-    
         
-        // Event listeners
+        // Event listeners - ONLY BUTTON CLICKS, NO TOUCH/SWIPE
         if (prevBtn) {
             prevBtn.addEventListener('click', prevSlide);
-            prevBtn.addEventListener('touchstart', prevSlide);
         }
         
         if (nextBtn) {
             nextBtn.addEventListener('click', nextSlide);
-            nextBtn.addEventListener('touchstart', nextSlide);
         }
-        
-        // Keyboard navigation
-        servicesCarousel.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                nextSlide();
-            }
-        });
-        
-        // Prevent card clicks from interfering
-        servicesCarousel.addEventListener('click', (e) => {
-            if (e.target.closest('.services-prev') || e.target.closest('.services-next')) {
-                e.stopPropagation();
-            }
-        });
         
         // Resize handling
         let resizeTimeout;
@@ -264,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 updateServicesCarousel();
-                positionCarouselControls();
             }, 150);
         });
         
@@ -315,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateFeatureCarousel(newIndex);
         }
         
-        // Event listeners
+        // Event listeners - ONLY CLICKS
         featureDots.forEach((dot, index) => {
             dot.addEventListener('click', () => updateFeatureCarousel(index));
             dot.addEventListener('keydown', (e) => {
@@ -336,68 +293,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Touch support
-        const featureCarousel = document.querySelector('.feature-carousel');
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        if (featureCarousel) {
-            featureCarousel.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            
-            featureCarousel.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleFeatureSwipe();
-            }, { passive: true });
-            
-            function handleFeatureSwipe() {
-                const swipeThreshold = 50;
-                
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    nextFeature();
-                }
-                
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    prevFeature();
-                }
-            }
-        }
-        
-        // Keyboard navigation for slides
-        document.addEventListener('keydown', (e) => {
-            const activeSlide = document.querySelector('.feature-slide.active');
-            if (activeSlide && document.activeElement.closest('.feature-carousel')) {
-                if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    prevFeature();
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    nextFeature();
-                }
-            }
-        });
-        
         // Initialize
         updateFeatureCarousel(0);
     }
     
-    // ===== PROJECTS CAROUSEL FUNCTIONS =====
+    // ===== PROJECTS CAROUSEL FUNCTIONS - NO TOUCH/SWIPE =====
     function initProjectsCarousel() {
         const projectItems = document.querySelectorAll('.project-item');
         const dots = document.querySelectorAll('.projects-dots .dot');
         const prevBtn = document.querySelector('.projects-prev');
         const nextBtn = document.querySelector('.projects-next');
-        const projectsList = document.querySelector('.projects-list');
         const projectsCarousel = document.querySelector('.projects-carousel');
         
         if (!projectItems.length) return;
         
         let currentIndex = 0;
-        let startPos = 0;
-        let currentTranslate = 0;
-        let prevTranslate = 0;
-        let animationID;
         
         function updateProjectsCarousel(index) {
             // Remove active class from all items
@@ -428,17 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nextBtn) {
                 nextBtn.setAttribute('aria-label', `Next project, currently viewing project ${index + 1} of ${projectItems.length}`);
             }
-            
-            // Announce to screen readers
-            const projectTitle = projectItems[index].querySelector('h3');
-            if (projectTitle) {
-                const liveRegion = document.createElement('div');
-                liveRegion.className = 'sr-only';
-                liveRegion.setAttribute('aria-live', 'polite');
-                liveRegion.textContent = `Now viewing: ${projectTitle.textContent}`;
-                document.body.appendChild(liveRegion);
-                setTimeout(() => liveRegion.remove(), 1000);
-            }
         }
         
         function nextProject() {
@@ -451,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateProjectsCarousel(newIndex);
         }
         
-        // Event listeners
+        // Event listeners - ONLY BUTTON CLICKS, NO TOUCH/SWIPE
         if (prevBtn) {
             prevBtn.addEventListener('click', prevProject);
         }
@@ -470,24 +369,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Keyboard navigation
-        projectsCarousel.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevProject();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                nextProject();
-            }
-        });
-        
         // Handle resize
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 updateProjectsCarousel(currentIndex);
-                positionCarouselControls();
             }, 250);
         });
         
@@ -508,7 +395,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileOverlay.classList.add('active');
             mobileSidebar.classList.add('active');
             navToggle.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
             
             // Focus trap for accessibility
             const firstFocusable = mobileSidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
@@ -519,7 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileOverlay.classList.remove('active');
             mobileSidebar.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
             navToggle.focus();
         }
         
@@ -650,63 +535,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== TOUCH SUPPORT INITIALIZATION =====
-    function initTouchSupport() {
-        // Prevent zoom on double tap
-        let lastTap = 0;
-        document.addEventListener('touchend', function(e) {
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            if (tapLength < 300 && tapLength > 0) {
-                e.preventDefault();
-            }
-            lastTap = currentTime;
-        }, false);
-        
-        // Improve touch scrolling
-        document.addEventListener('touchmove', function(e) {
-            if (e.scale !== 1) {
-                e.preventDefault();
-            }
-        }, { passive: false });
-    }
-    
-    // ===== FIXED CAROUSEL CONTROLS POSITIONING =====
-    function positionCarouselControls() {
-        // This function ensures carousel controls stay fixed in position
-        const sections = [
-            { carousel: '.split-carousel', controls: '.split-controls' },
-            { carousel: '.services-carousel', controls: '.services-controls' },
-            { carousel: '.projects-carousel', controls: '.projects-controls' }
-        ];
-        
-        sections.forEach(section => {
-            const carousel = document.querySelector(section.carousel);
-            const controls = document.querySelector(section.controls);
-            
-            if (carousel && controls) {
-                // Position controls relative to carousel
-                const carouselRect = carousel.getBoundingClientRect();
-                const controlsRect = controls.getBoundingClientRect();
-                
-                // Center vertically within carousel
-                const topPosition = carouselRect.top + (carouselRect.height / 2) - (controlsRect.height / 2);
-                
-                // For services and projects, position at bottom
-                if (section.carousel === '.services-carousel' || section.carousel === '.projects-carousel') {
-                    controls.style.position = 'relative';
-                    controls.style.top = 'auto';
-                    controls.style.transform = 'none';
-                    controls.style.marginTop = '2rem';
-                } else {
-                    // For split carousel, keep at original position
-                    controls.style.position = 'relative';
-                }
-            }
-        });
-    }
-    
-    // Initialize fixed controls on load
-    window.addEventListener('load', positionCarouselControls);
-    window.addEventListener('resize', positionCarouselControls);
+    console.log('All animations initialized WITHOUT touch/swipe support');
 });
