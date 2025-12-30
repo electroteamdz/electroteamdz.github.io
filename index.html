@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Electro Team - Professional electrical solutions, industrial automation, and safety systems across Algeria. Certified electrical engineers for residential, commercial, and industrial projects." />
+    <meta name="keywords" content="electrical services Algeria, industrial automation, Siemens certified, electrical installation, maintenance, safety systems, Algeria electricians" />
+    <meta name="author" content="Electro Team" />
+    <meta property="og:title" content="Electro Team | Powering Your Future" />
+    <meta property="og:description" content="Reliable electricity solutions for industrial, commercial, and residential projects across Algeria." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/x-icon" href="assets/svg_logo.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/svg_logo.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/svg_logo.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/svg_logo.svg">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Electro Team | Professional Electrical Solutions in Algeria</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ElectricalContractor",
+        "name": "Electro Team",
+        "description": "Professional electrical solutions and industrial automation services in Algeria",
+        "url": "https://electroteam.dz",
+        "logo": "https://electroteam.dz/assets/svg_logo.svg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ain Taya",
+            "addressRegion": "Algiers",
+            "addressCountry": "Algeria"
+        },
+        "telephone": "+213-540-32-56-16",
+        "email": "electroteamdz@gmail.com",
+        "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-14:00",
+        "serviceArea": {
+            "@type": "Place",
+            "name": "Algeria"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content" tabindex="0">Skip to main content</a>
+    
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="logo-wrapper">
+                <i class="fas fa-bolt logo-icon" aria-hidden="true"></i>
+                <div class="logo-text">
+                    <span class="logo-primary">ELECTRO</span>
+                    <span class="logo-secondary">TEAM</span>
+                </div>
+            </div>
+            <div class="loading-spinner" role="status" aria-label="Loading">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p data-i18n="loading.text">Powering Your Future...</p>
+        </div>
+    </div>
+
+    <nav role="navigation" aria-label="Main navigation">
+        <div class="nav__logo">
+            <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo" width="40" height="40">
+            <span>Electro<span>Team</span></span>
+        </div>
+        
+        <div class="nav-right">
+            <button class="nav__toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu-overlay" aria-hidden="true"></div>
+
+        <div class="mobile-sidebar" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <div class="sidebar-header">
+                <div class="nav__logo_menu">
+                    <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo" width="40" height="40">
+                    <span>Electro<span>Team</span></span>
+                </div>
+                <button class="close-sidebar" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="sidebar-language">
+                    <div class="language-picker">
+                        <div class="lang-current">
+                            <span class="lang-code">EN</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <div class="lang-dropdown">
+                            <div class="lang-option" data-lang="en" role="button" tabindex="0">
+                                <span class="lang-name">English</span>
+                                <span class="lang-code">EN</span>
+                            </div>
+                            <div class="lang-option" data-lang="ar" role="button" tabindex="0">
+                                <span class="lang-name">العربية</span>
+                                <span class="lang-code">AR</span>
+                            </div>
+                            <div class="lang-option" data-lang="fr" role="button" tabindex="0">
+                                <span class="lang-name">Français</span>
+                                <span class="lang-code">FR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="sidebar-links" role="menu">
+                    <li role="none"><a href="#home" data-i18n="nav.home" role="menuitem">Home</a></li>
+                    <li role="none"><a href="#about" data-i18n="nav.about" role="menuitem">About</a></li>
+                    <li role="none"><a href="#services" data-i18n="nav.services" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#whyus" data-i18n="nav.whyus" role="menuitem">Why Us</a></li>
+                    <li role="none"><a href="#projects" data-i18n="nav.projects" role="menuitem">Projects</a></li>
+                    <li role="none"><a href="#team" data-i18n="nav.team" role="menuitem">Team</a></li>
+                    <li role="none"><a href="#contact" class="sidebar-contact-btn" data-i18n="nav.contact" role="menuitem">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content">
+        <section id="home" class="section hero" aria-labelledby="hero-title">
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline class="hero-video" aria-label="Background video showing electrical installations">
+                    <source src="assets/background/backgroundVideo.mp4" type="video/mp4">
+                    <img src="assets/background/backgroundPhoto.jpg" alt="Electrical background">
+                </video>
+            </div>
+            
+            <div class="section-container">
+                <div class="hero-content">
+                    <h1 id="hero-title" data-i18n-html="hero.title">
+                        Where<br /><span>Quality</span> Meets<br /><span>Power</span>
+                    </h1>
+                    <p class="hero-subtitle" data-i18n="hero.subtitle">
+                        Reliable electricity solutions for industrial, commercial, and residential projects across Algeria
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="start-project" role="button">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                            <span data-i18n="hero.consultation">Get Free Consultation</span>
+                        </a>
+                        <a href="#services" class="secondary-btn" role="button">
+                            <i class="fas fa-concierge-bell" aria-hidden="true"></i>
+                            <span data-i18n="hero.services">Our Services</span>
+                        </a>
+                    </div>
+                    <div class="hero-stats" role="list">
+                        <div class="stat" role="listitem">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="hero.stats.certified">100%</h3>
+                                <p data-i18n="hero.stats.certifiedText">Certified Team</p>
+                            </div>
+                        </div>
+                        <div class="stat" role="listitem">
+                            <div class="stat-icon">
+                                <i class="fas fa-headset" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3 data-i18n="hero.stats.support">24/7</h3>
+                                <p data-i18n="hero.stats.supportText">Emergency Support</p>
+                            </div>
+                        </div>
+                        <div class="stat" role="listitem">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            </div>
+                            <div>
+                                <h3>30+</h3>
+                                <p data-i18n="hero.stats.projectsText">Projects Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section" aria-labelledby="about-title">
+            <i class="fas fa-bolt electric-bolt size-1 rotate-1 animation-1 bolt-1"></i>
+            <div class="split-carousel">
+                <div class="split-content">
+                    <div class="section-header">
+                        <h2 id="about-title" class="section-title" data-i18n-html="about.title">About <span>Electro Team</span></h2>
+                        <p class="section-subtitle" data-i18n="about.subtitle">Leading the energy revolution since 2023</p>
+                    </div>
+                    
+                    <div class="split-carousel-content">
+                        <div class="split-text">
+                            <div class="split-slide active" data-index="0" role="tabpanel" aria-labelledby="about-tab-0">
+                                <div class="slide-number">01</div>
+                                <h3 id="about-tab-0" data-i18n="about.slide1.title">Who We Are</h3>
+                                <p class="slide-description" data-i18n="about.slide1.description">
+                                    At Electro Team, we are dedicated to delivering high-quality electrical solutions across Algeria. With years of experience, our company is led by qualified electrical engineers and supported by a team of skilled professionals specializing in electrical installations, maintenance, and troubleshooting. We focus on safety, reliability, and efficiency to deliver dependable solutions tailored to our clients' needs.
+                                </p>
+                                <div class="slide-features">
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                        <span data-i18n="about.slide1.feature1">Licensed & Certified</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                        <span data-i18n="about.slide1.feature2">Safety First Approach</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="split-slide" data-index="1" role="tabpanel" aria-labelledby="about-tab-1" hidden>
+                                <div class="slide-number">02</div>
+                                <h3 id="about-tab-1" data-i18n="about.slide2.title">Our Mission & Vision</h3>
+                                <p class="slide-description" data-i18n="about.slide2.description">
+                                    To provide reliable, efficient, and safe electrical solutions that power homes and businesses across Algeria, using the latest technology and certified materials.
+                                </p>
+                                <div class="slide-features">
+                                    <div class="feature">
+                                        <i class="fas fa-bullseye" aria-hidden="true"></i>
+                                        <span data-i18n="about.slide2.feature1">Customer Satisfaction</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-rocket" aria-hidden="true"></i>
+                                        <span data-i18n="about.slide2.feature2">Innovation Driven</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="split-controls">
+                                <button class="split-prev" aria-label="Previous slide" aria-controls="about-tab-0 about-tab-1 about-tab-2">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="split-dots" role="tablist">
+                                    <button class="dot active" data-index="0" id="dot-0" role="tab" aria-controls="about-tab-0" aria-selected="true" aria-label="Slide 1: Who We Are"></button>
+                                    <button class="dot" data-index="1" id="dot-1" role="tab" aria-controls="about-tab-1" aria-selected="false" aria-label="Slide 2: Mission & Vision"></button>
+                                </div>
+                                <button class="split-next" aria-label="Next slide" aria-controls="about-tab-0 about-tab-1 about-tab-2">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="split-image">
+                            <div class="image-container skeleton-image" data-loaded="false">
+                                <img src="assets/pic-about-us-one.jpeg" 
+                                     alt="Electro Team professionals working on electrical installation" 
+                                     class="active" data-index="0" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                                <img src="assets/pic-about-us-two.jpeg" 
+                                     alt="Our mission: providing safe electrical solutions" 
+                                     data-index="1" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section services-section" aria-labelledby="services-title">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="services-title" class="section-title" data-i18n-html="services.title">Our <span>Services</span></h2>
+                    <p class="section-subtitle" data-i18n="services.subtitle">Comprehensive electrical solutions for every need</p>
+                </div>
+                
+                <div class="services-carousel" aria-roledescription="carousel" aria-label="Our services">
+                    <div class="services-track" role="list">
+                        <!-- Service 1: Electrical Installation with Image -->
+                        <div class="service-card" role="listitem">
+                            <div class="service-image skeleton-image" data-loaded="false">
+                                <img src="assets/picServicesOne.jpeg" 
+                                     alt="Professional electrical installation work" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                     onerror="this.onerror=null; this.src='assets/picServicesOne.jpeg'">
+                            </div>
+                            <div class="service-content">
+                                <div class="card-icon">
+                                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                                </div>
+                                <h3 data-i18n="services.card1.title">Electrical Installation</h3>
+                                <p data-i18n="services.card1.description">Comprehensive electrical setups for new buildings, renovations, and expansions.</p>
+                                <ul class="service-features">
+                                    <li data-i18n="services.card1.feature1">Complete wiring solutions</li>
+                                    <li data-i18n="services.card1.feature2">Commercial lighting</li>
+                                    <li data-i18n="services.card1.feature3">Lighting solutions</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Service 2: Industrial Automation with Image -->
+                        <div class="service-card" role="listitem">
+                            <div class="service-image skeleton-image" data-loaded="false">
+                                <img src="assets/picServicesTwo.jpeg" 
+                                     alt="Industrial automation control panel" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                     onerror="this.onerror=null; this.src='assets/picServicesTwo.jpeg'">
+                            </div>
+                            <div class="service-content">
+                                <div class="card-icon">
+                                    <i class="fas fa-tools" aria-hidden="true"></i>
+                                </div>
+                                <h3 data-i18n="services.card2.title"></h3>
+                                <p data-i18n="services.card2.description"></p>
+                                <ul class="service-features">
+                                    <li data-i18n="services.card2.feature1"></li>
+                                    <li data-i18n="services.card2.feature2"></li>
+                                    <li data-i18n="services.card2.feature3"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 3: Safety Systems with Image -->
+                        <div class="service-card" role="listitem">
+                            <div class="service-image skeleton-image" data-loaded="false">
+                                <img src="assets/picServicesThree.jpeg" 
+                                     alt="Security camera installation" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                     onerror="this.onerror=null; this.src='assets/picServicesThree.jpeg'">
+                            </div>
+                            <div class="service-content">
+                                <div class="card-icon">
+                                    <i class="fas fa-industry" aria-hidden="true"></i>
+                                </div>
+                                <h3 data-i18n="services.card3.title"></h3>
+                                <p data-i18n="services.card3.description"></p>
+                                <ul class="service-features">
+                                    <li data-i18n="services.card3.feature1"></li>
+                                    <li data-i18n="services.card3.feature2"></li>
+                                    <li data-i18n="services.card3.feature3"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 4: Maintenance & Repair with Image -->
+                        <div class="service-card" role="listitem">
+                            <div class="service-image skeleton-image" data-loaded="false">
+                                <img src="assets/picServicesFour.jpeg" 
+                                     alt="Electrical maintenance and repair work" loading="lazy"
+                                     onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                     onerror="this.onerror=null; this.src='assets/picServicesFour.jpeg'">
+                            </div>
+                            <div class="service-content">
+                                <div class="card-icon">
+                                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                </div>
+                                <h3 data-i18n="services.card4.title">Maintenance & Repair</h3>
+                                <p data-i18n="services.card4.description">Regular inspections and prompt repairs to keep systems running smoothly.</p>
+                                <ul class="service-features">
+                                    <li data-i18n="services.card4.feature1">24/7 emergency service</li>
+                                    <li data-i18n="services.card4.feature2">Preventive maintenance</li>
+                                    <li data-i18n="services.card4.feature3">Troubleshooting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="services-controls">
+                        <button class="services-prev" aria-label="Previous services">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="services-next" aria-label="Next services">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="whyus" class="section whyus-section" aria-labelledby="whyus-title">
+            <i class="fas fa-bolt electric-bolt size-3 rotate-3 animation-4 bolt-1"></i>
+            <i class="fas fa-bolt electric-bolt size-1 rotate-5 animation-2 bolt-2"></i>
+            <i class="fas fa-bolt electric-bolt size-4 rotate-2 animation-5 bolt-3"></i>
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="whyus-title" class="section-title" data-i18n-html="whyus.title">Why <span>Choose Us</span></h2>
+                    <p class="section-subtitle" data-i18n="whyus.subtitle">The Electro Team difference</p>
+                </div>
+                
+                <div class="feature-carousel" aria-roledescription="carousel" aria-label="Why choose us features">
+                    <div class="feature-slides">
+                        <div class="feature-slide active" role="tabpanel" aria-labelledby="feature-tab-0">
+                            <div class="feature-content">
+                                <div class="feature-icon">
+                                    <i class="fas fa-user-shield" aria-hidden="true"></i>
+                                </div>
+                                <h3 id="feature-tab-0" data-i18n="whyus.feature1.title">Certified Professionals</h3>
+                                <p data-i18n="whyus.feature1.description">All our electricians are licensed, insured, and continuously trained on the latest electrical codes and safety standards.</p>
+                                <div class="feature-badge">
+                                    <span data-i18n="whyus.feature1.badge">Licensed</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-slide" role="tabpanel" aria-labelledby="feature-tab-1" hidden>
+                            <div class="feature-content">
+                                <div class="feature-icon">
+                                    <i class="fas fa-clock" aria-hidden="true"></i>
+                                </div>
+                                <h3 id="feature-tab-1" data-i18n="whyus.feature2.title">24/7 Emergency Service</h3>
+                                <p data-i18n="whyus.feature2.description">Electrical emergencies don't wait for business hours. That's why we offer round-the-clock emergency services for urgent repairs.</p>
+                                <div class="feature-badge">
+                                    <span data-i18n="whyus.feature2.badge">Always Available</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-slide" role="tabpanel" aria-labelledby="feature-tab-2" hidden>
+                            <div class="feature-content">
+                                <div class="feature-icon">
+                                    <i class="fas fa-medal" aria-hidden="true"></i>
+                                </div>
+                                <h3 id="feature-tab-2" data-i18n="whyus.feature3.title">Quality Guarantee</h3>
+                                <p data-i18n="whyus.feature3.description">All our installations come with comprehensive warranties. We stand behind our work and ensure complete customer satisfaction.</p>
+                                <div class="feature-badge">
+                                    <span data-i18n="whyus.feature3.badge">5-Year Warranty</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-slide" role="tabpanel" aria-labelledby="feature-tab-3" hidden>
+                            <div class="feature-content">
+                                <div class="feature-icon">
+                                    <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                                </div>
+                                <h3 id="feature-tab-3" data-i18n="whyus.feature4.title">Transparent Pricing</h3>
+                                <p data-i18n="whyus.feature4.description">No hidden costs. We provide detailed quotes and explain every aspect of the work before starting any project.</p>
+                                <div class="feature-badge">
+                                    <span data-i18n="whyus.feature4.badge">No Surprises</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-navigation">
+                        <div class="feature-dots" role="tablist">
+                            <button class="feature-dot active" data-index="0" role="tab" aria-controls="feature-tab-0" aria-selected="true" tabindex="0">
+                                <span data-i18n="whyus.dot1">Certified</span>
+                            </button>
+                            <button class="feature-dot" data-index="1" role="tab" aria-controls="feature-tab-1" aria-selected="false" tabindex="-1">
+                                <span data-i18n="whyus.dot2">24/7 Service</span>
+                            </button>
+                            <button class="feature-dot" data-index="2" role="tab" aria-controls="feature-tab-2" aria-selected="false" tabindex="-1">
+                                <span data-i18n="whyus.dot3">Quality</span>
+                            </button>
+                            <button class="feature-dot" data-index="3" role="tab" aria-controls="feature-tab-3" aria-selected="false" tabindex="-1">
+                                <span data-i18n="whyus.dot4">Pricing</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects-section" aria-labelledby="projects-title">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="projects-title" class="section-title" data-i18n-html="projects.title">Our <span>Projects</span></h2>
+                    <p class="section-subtitle" data-i18n="projects.subtitle">Successfully completed projects across Algeria</p>
+                </div>
+                
+                <div class="projects-carousel" aria-roledescription="carousel" aria-label="Our projects">
+                    <div class="projects-list" role="list">
+                        <article class="project-item active" data-project="1" role="listitem">
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <div class="project-number">01</div>
+                                    <h3 data-i18n="projects.project1.title">Commercial Building</h3>
+                                    <p class="project-description" data-i18n="projects.project1.description">
+                                        Electrical and lighting installation for a commercial center including interior and exterior decorative lighting to enhance functionality, safety, and architectural design.
+                                    </p>
+                                    <div class="project-details">
+                                        <div class="detail">
+                                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project1.date">In Process</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project1.location">Boumerdes, Algeria</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-building" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project1.detail">6 Floors</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-images">
+                                        <img src="assets/projects/comercialBuilding/1.jpeg" 
+                                             alt="Commercial building interior lighting installation" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/comercialBuilding/2.jpeg" 
+                                             alt="Commercial building electrical panel" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/comercialBuilding/3.jpeg" 
+                                             alt="Commercial building exterior lighting" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                    </div>
+                                    
+                                    <button class="view-album-btn" data-project="1" aria-label="View more images of commercial building project">
+                                        <i class="fas fa-images" aria-hidden="true"></i>
+                                        <span>View Album</span>
+                                    </button>
+                                </div>
+                                <div class="project-image-main skeleton-image" data-loaded="false">
+                                    <img src="assets/projects/comercialBuilding/1.jpeg" 
+                                         alt="Commercial building electrical installation" loading="lazy"
+                                         onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                                    <div class="project-tag" data-i18n="projects.tag.commercial">Commercial</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="project-item" data-project="2" role="listitem" hidden>
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <div class="project-number">02</div>
+                                    <h3 data-i18n="projects.project2.title">Cold Storage Facility</h3>
+                                    <p class="project-description" data-i18n="projects.project2.description">
+                                        Maintenance and troubleshooting of PLC and HMI systems in a cold storage facility, addressing operational issues to restore reliability and ensure continuous system performance.
+                                    </p>
+                                    <div class="project-details">
+                                        <div class="detail">
+                                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project2.date">In Progress</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project2.location">Rouiba, Algeria</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-industry" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project2.detail">Emergency Intervention</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-images">
+                                        <img src="assets/projects/coldStorageFacility/1.jpeg" 
+                                             alt="Commercial building interior lighting installation" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/coldStorageFacility/2.jpeg" 
+                                             alt="Commercial building electrical panel" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/coldStorageFacility/3.jpeg" 
+                                             alt="Commercial building exterior lighting" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                    </div>
+                                    
+                                    <button class="view-album-btn" data-project="2" aria-label="View more images of cold storage facility project">
+                                        <i class="fas fa-images" aria-hidden="true"></i>
+                                        <span>View Album</span>
+                                    </button>
+                                </div>
+                                <div class="project-image-main skeleton-image" data-loaded="false">
+                                    <img src="assets/projects/coldStorageFacility/1.jpeg" 
+                                         alt="Cold storage facility maintenance work" loading="lazy"
+                                         onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                                    <div class="project-tag" data-i18n="projects.tag.industrial">Industrial</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="project-item" data-project="3" role="listitem" hidden>
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <div class="project-number">03</div>
+                                    <h3 data-i18n="projects.project3.title">Residential Electrical Project</h3>
+                                    <p class="project-description" data-i18n="projects.project3.description">
+                                        Electrical installation for a residential building with 30+ apartments, executed using modern methods and fully compliant with the NFC 15-100 standard, ensuring safety, reliability, and performance.
+                                    </p>
+                                    <div class="project-details">
+                                        <div class="detail">
+                                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project3.date">In Progress</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project3.location">Ain Taya, Algeria</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-home" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project3.detail">+30 Apartments</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-images">
+                                        <img src="assets/projects/ainTayaResidence/1.jpeg" 
+                                             alt="Commercial building interior lighting installation" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/ainTayaResidence/2.jpeg" 
+                                             alt="Commercial building electrical panel" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/ainTayaResidence/3.jpeg" 
+                                             alt="Commercial building exterior lighting" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                    </div>
+                                    
+                                    <button class="view-album-btn" data-project="3" aria-label="View more images of residential building project">
+                                        <i class="fas fa-images" aria-hidden="true"></i>
+                                        <span>View Album</span>
+                                    </button>
+                                </div>
+                                <div class="project-image-main skeleton-image" data-loaded="false">
+                                    <img src="assets/projects/ainTayaResidence/1.jpeg" 
+                                         alt="Residential building electrical installation" loading="lazy"
+                                         onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                                    <div class="project-tag" data-i18n="projects.tag.residential">Residential</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="project-item" data-project="4" role="listitem" hidden>
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <div class="project-number">04</div>
+                                    <h3 data-i18n="projects.project4.title">UPS Maintenance – Alliance Assurances</h3>
+                                    <p class="project-description" data-i18n="projects.project4.description">
+                                        Preventive maintenance of UPS systems at Alliance Assurances to protect servers, prevent overloads, and ensure continuous power reliability.
+                                    </p>
+                                    <div class="project-details">
+                                        <div class="detail">
+                                            <i class="fas fa-calendar" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project4.date">Completed</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project4.location">Alliance Assurances</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-tools" aria-hidden="true"></i>
+                                            <span data-i18n="projects.project4.detail">Maintenance UPS Problem</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-images">
+                                        <img src="assets/projects/allianceAssurancesUpsMaintenance/1.jpeg" 
+                                             alt="Commercial building interior lighting installation" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/allianceAssurancesUpsMaintenance/2.jpeg" 
+                                             alt="Commercial building electrical panel" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                        <img src="assets/projects/allianceAssurancesUpsMaintenance/3.jpeg" 
+                                             alt="Commercial building exterior lighting" 
+                                             class="project-preview-img skeleton-image" loading="lazy"
+                                             onload="this.classList.remove('skeleton-image')">
+                                    </div>
+                                    
+                                    <button class="view-album-btn" data-project="4" aria-label="View more images of UPS maintenance project">
+                                        <i class="fas fa-images" aria-hidden="true"></i>
+                                        <span>View Album</span>
+                                    </button>
+                                </div>
+                                <div class="project-image-main skeleton-image" data-loaded="false">
+                                    <img src="assets/projects/allianceAssurancesUpsMaintenance/1.jpeg" 
+                                        alt="UPS system preventive maintenance" loading="lazy"
+                                        onload="this.parentElement.setAttribute('data-loaded', 'true')">
+                                    <div class="project-tag">Maintenance</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- TikTok See More Projects Card -->
+                        <article class="project-item project-tiktok" data-project="4" role="listitem" hidden>
+                            <div class="project-content">
+                                <div class="project-text">
+                                    <div class="project-number">05</div>
+                                    <h3 data-i18n="projects.tiktok.title">More Projects on TikTok</h3>
+                                    <p class="project-description" data-i18n="projects.tiktok.description">
+                                        Follow us on TikTok to see more of our daily projects, behind-the-scenes work, and electrical tips!
+                                    </p>
+                                    <div class="project-details">
+                                        <div class="detail">
+                                            <i class="fas fa-video" aria-hidden="true"></i>
+                                            <span data-i18n="projects.tiktok.detail1">Daily Updates</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                                            <span data-i18n="projects.tiktok.detail2">Behind the Scenes</span>
+                                        </div>
+                                        <div class="detail">
+                                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                                            <span data-i18n="projects.tiktok.detail3">Electrical Tips</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="project-images">
+                                        <div class="tiktok-preview">
+                                            <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                            <span data-i18n="projects.tiktok.preview">Watch our videos</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <a href="https://www.tiktok.com/@electro.team0" target="_blank" rel="noopener noreferrer" class="view-album-btn tiktok-btn" aria-label="Visit our TikTok page for more projects">
+                                        <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                        <span data-i18n="projects.tiktok.button">See More on TikTok</span>
+                                    </a>
+                                </div>
+                                <div class="project-image-main tiktok-image">
+                                    <div class="tiktok-logo-container">
+                                        <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                        <div class="tiktok-text">
+                                            <span data-i18n="projects.tiktok.follow">Follow Us</span>
+                                            <span class="tiktok-handle" data-i18n="projects.tiktok.handle">@electro.team0</span>
+                                        </div>
+                                    </div>
+                                    <div class="project-tag tiktok-tag">
+                                        <i class="fab fa-tiktok" aria-hidden="true"></i>
+                                        <span data-i18n="projects.tiktok.tag">Social Media</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    
+                    <div class="projects-controls">
+                        <button class="projects-prev" aria-label="Previous project">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="projects-dots" role="tablist">
+                            <button class="dot active" data-index="0" role="tab" aria-label="Commercial building project" aria-selected="true"></button>
+                            <button class="dot" data-index="1" role="tab" aria-label="Cold storage facility project" aria-selected="false"></button>
+                            <button class="dot" data-index="2" role="tab" aria-label="Residential building project" aria-selected="false"></button>
+                            <button class="dot" data-index="3" role="tab" aria-label="UPS maintenance project" aria-selected="false"></button>
+                            <button class="dot" data-index="4" role="tab" aria-label="UPS maintenance project" aria-selected="false"></button>
+                        </div>
+                        <button class="projects-next" aria-label="Next project">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="gallery-modal" role="dialog" aria-modal="true" aria-label="Project gallery">
+            <div class="gallery-container">
+                <div class="gallery-header">
+                    <button class="close-gallery" aria-label="Close gallery">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="gallery-content">
+                    <div class="gallery-main">
+                        <img src="" alt="Gallery Image" loading="lazy">
+                    </div>
+                    <div class="gallery-thumbnails" role="list"></div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="gallery-prev" aria-label="Previous image">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-next" aria-label="Next image">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="gallery-counter">
+                    <span class="current-image">1</span> / <span class="total-images">0</span>
+                </div>
+            </div>
+        </div>
+
+        <section id="team" class="section team" aria-labelledby="team-title">
+            <i class="fas fa-bolt electric-bolt size-5 rotate-1 animation-1 bolt-1"></i>
+            <i class="fas fa-bolt electric-bolt size-3 rotate-3 animation-2 bolt-5"></i>
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="team-title" class="section-title" data-i18n-html="team.title">Our <span>Expert Team</span></h2>
+                    <p class="section-subtitle" data-i18n="team.subtitle">Certified professionals</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card" role="article">
+                        <div class="team-image skeleton-image" data-loaded="false">
+                            <img src="assets/alaaeddine.jpeg" alt="Zaoui Alaa Eddine - Electrical Engineer & Co-Founder" loading="lazy"
+                                onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h5 data-i18n="team.member1.name">Zaoui Alaa Eddine</h5>
+                            <p class="team-degree" data-i18n="team.member1.position">Electrical Engineer</p>
+                            <p class="team-founder" data-i18n="team.cofounder">Co-Founder of Electro Team</p>
+                            <div class="team-social">
+                                <a href="https://www.linkedin.com/in/alaa-eddine-1bb117225" target="_blank" rel="noopener noreferrer" aria-label="Visit Alaa Eddine's LinkedIn profile">
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card" role="article">
+                        <div class="team-image skeleton-image" data-loaded="false">
+                            <img src="assets/jaafar.png" alt="Djaafer Essedik Saib - Electrical Engineer & Co-Founder" loading="lazy"
+                                onload="this.parentElement.setAttribute('data-loaded', 'true')"
+                                onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h5 data-i18n="team.member2.name">Djaafer Essedik Saib</h5>
+                            <p class="team-degree" data-i18n="team.member2.position">Electrical Engineer</p>
+                            <p class="team-founder" data-i18n="team.cofounder">Co-Founder of Electro Team</p>
+                            <div class="team-social">
+                                <a href="https://www.linkedin.com/in/djaafer-essedik-saib-634290204/" target="_blank" rel="noopener noreferrer" aria-label="Visit Djaafer Saib's LinkedIn profile">
+                                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact" aria-labelledby="contact-title">
+            <i class="fas fa-bolt electric-bolt size-3 rotate-4 animation-4 bolt-4"></i>
+            <div class="section-container">
+                <div class="section-header">
+                    <h2 id="contact-title" class="section-title" data-i18n-html="contact.title">Get In <span>Touch</span></h2>
+                    <p class="section-subtitle" data-i18n="contact.subtitle">Contact us for electrical solutions</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-item clickable" onclick="window.open('https://maps.google.com/?q=Algiers+Ain+Taya+Algeria', '_blank')" role="button" tabindex="0">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h5 data-i18n="contact.location">Location</h5>
+                                <p data-i18n="contact.locationText">Algiers, Ain Taya, Algeria</p>
+                                <small data-i18n="contact.locationClick">Click to open in Google Maps</small>
+                            </div>
+                        </div>
+                        <div class="info-item clickable" onclick="window.location.href='tel:+213540325616'" role="button" tabindex="0">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h5 data-i18n="contact.phone">Phone</h5>
+                                <p><a href="tel:+213540325616" class="contact-link">05 40 32 56 16</a></p>
+                                <p><a href="tel:+213540523438" class="contact-link">05 40 52 34 38</a></p>
+                                <small data-i18n="contact.emergency">24/7 Emergency Service</small>
+                            </div>
+                        </div>
+                        <div class="info-item clickable" onclick="window.location.href='mailto:electroteamdz@gmail.com'" role="button" tabindex="0">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h5 data-i18n="contact.email">Email</h5>
+                                <p><a href="mailto:electroteamdz@gmail.com" class="contact-link">electroteamdz@gmail.com</a></p>
+                                <small data-i18n="contact.response">Response within 24 hours</small>
+                            </div>
+                        </div>
+                        <div class="info-item clickable" onclick="window.open('https://wa.me/213540325616', '_blank')" role="button" tabindex="0">
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <h5 data-i18n="contact.whatsapp">WhatsApp</h5>
+                                <p><a href="https://wa.me/213540325616" target="_blank" rel="noopener noreferrer" class="contact-link">Chat on WhatsApp</a></p>
+                                <small data-i18n="contact.whatsappResponse">Quick response via WhatsApp</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3 data-i18n="contact.formTitle">Send Us a Message</h3>
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <input type="text" id="contactName" placeholder="Your Name" required 
+                                       data-i18n-placeholder="contact.namePlaceholder"
+                                       aria-label="Your name">
+                                <div class="error-message" data-i18n="contact.error.name">Please enter your name</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contactEmail" placeholder="Your Email" required 
+                                       data-i18n-placeholder="contact.emailPlaceholder"
+                                       aria-label="Your email">
+                                <div class="error-message" data-i18n="contact.error.email">Please enter a valid email address</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="contactPhone" placeholder="Phone Number" required 
+                                       data-i18n-placeholder="contact.phonePlaceholder"
+                                       aria-label="Your phone number">
+                                <div class="error-message" data-i18n="contact.error.phone">Please enter a valid Algerian phone number (05/06/07 followed by 8 digits)</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contactMessage" placeholder="Your Message" rows="4" required 
+                                          data-i18n-placeholder="contact.messagePlaceholder"
+                                          aria-label="Your message"></textarea>
+                                <div class="error-message" data-i18n="contact.error.message">Please enter your message</div>
+                            </div>
+                            <button type="submit" class="submit-btn" aria-label="Send message">
+                                <i class="fas fa-paper-plane"></i>
+                                <span data-i18n="contact.sendButton">Send Message</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/svg_logo.svg" class="logo-svg" alt="Electro Team Logo" width="50" height="50">
+                        <span data-i18n-html="footer.logo">Electro<span>Team</span></span>
+                    </div>
+                    <p class="footer-description" data-i18n="footer.description">
+                        Providing reliable electrical solutions since 2023. Certified, insured, and committed to excellence in every project.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/e.l.e.c.t.r.o.d.z.24" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/213540325616" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/110428992" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/eelectroteam?igsh=MXhrYjVkcXVpc2J0bg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@electro.team0" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="footer.linksTitle">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.home">Home</span></a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.about">About Us</span></a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.services">Services</span></a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.projects">Projects</span></a></li>
+                        <li><a href="#team"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.team">Our Team</span></a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-i18n="nav.contact">Contact</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="footer.servicesTitle">Our Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-bolt"></i> <span data-i18n="services.card1.title">Electrical Installation</span></a></li>
+                        <li><a href="#services"><i class="fas fa-tools"></i> <span data-i18n="services.card2.title">Maintenance & Repair</span></a></li>
+                        <li><a href="#services"><i class="fas fa-industry"></i> <span data-i18n="services.card3.title">Industrial Automation</span></a></li>
+                        <li><a href="#services"><i class="fas fa-shield-alt"></i> <span data-i18n="services.card4.title">Safety Systems</span></a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-i18n="footer.contactTitle">Contact Info</h4>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="contact.locationText">Algiers, Ain Taya, Algeria</span></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+213540325616" class="contact-link">05 40 32 56 16</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+213540523438" class="contact-link">05 40 52 34 38</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:electroteamdz@gmail.com" class="contact-link">electroteamdz@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p data-i18n="footer.copyright">&copy; 2025 Electro Team. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html" target="_blank" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="terms-of-service.html" target="_blank"  data-i18n="footer.terms">Terms of Service</a>
+                    <a href="safety-standards.html" target="_blank"  data-i18n="footer.safety">Safety Standards</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/translation.js"></script>
+    <script src="scripts/animations.js"></script>
+    <script src="scripts/gallery.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>

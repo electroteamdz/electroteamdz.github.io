@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safety Standards | Electro Team</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ff8539;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: #ff8539;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+        
+        .logo-text span {
+            color: #ff8539;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .last-updated {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        h2 {
+            color: #1e293b;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        h3 {
+            color: #334155;
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #475569;
+        }
+        
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+            color: #475569;
+        }
+        
+        .safety-banner {
+            background: linear-gradient(135deg, #ff8539, #e56b20);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .safety-banner i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .safety-banner h2 {
+            color: white;
+            border: none;
+            margin: 0 0 10px 0;
+            padding: 0;
+        }
+        
+        .standards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .standard-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .standard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .standard-card i {
+            color: #ff8539;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .standard-card h3 {
+            margin-top: 0;
+            color: #1e293b;
+        }
+        
+        .certification {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #ff8539;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        
+        .back-home:hover {
+            background: #e56b20;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .standards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <div class="logo-text">Electro<span>Team</span></div>
+            </div>
+            <h1>Safety Standards & Compliance</h1>
+            <p class="last-updated">Last Updated: December 2025</p>
+        </div>
+        
+        <div class="safety-banner">
+            <i class="fas fa-user-shield"></i>
+            <h2>Safety First, Always</h2>
+            <p>At Electro Team, safety isn't just a policy—it's our culture. Every project follows strict safety protocols.</p>
+        </div>
+        
+        <h2>Our Safety Philosophy</h2>
+        <p>We believe that no project is complete unless it's done safely. Our commitment to safety extends beyond compliance—it's integrated into every aspect of our work, from planning to execution.</p>
+        
+        <div class="standards-grid">
+            <div class="standard-card">
+                <i class="fas fa-clipboard-check"></i>
+                <h3>Compliance Standards</h3>
+                <p>All work complies with Algerian electrical regulations, NFC standards, and international best practices.</p>
+            </div>
+            
+            <div class="standard-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Certified Professionals</h3>
+                <p>Our team consists of licensed electricians with continuous safety training and certification updates.</p>
+            </div>
+            
+            <div class="standard-card">
+                <i class="fas fa-hard-hat"></i>
+                <h3>Personal Protective Equipment</h3>
+                <p>Mandatory use of PPE including insulated gloves, safety glasses, helmets, and arc-flash protection.</p>
+            </div>
+            
+            <div class="standard-card">
+                <i class="fas fa-tools"></i>
+                <h3>Equipment Standards</h3>
+                <p>Regular inspection and maintenance of all tools and equipment to ensure safe operation.</p>
+            </div>
+        </div>
+        
+        <h2>Key Safety Protocols</h2>
+        
+        <h3>1. Lockout/Tagout Procedures</h3>
+        <ul>
+            <li>Mandatory energy isolation before any electrical work</li>
+            <li>Multiple verification steps to ensure zero energy state</li>
+            <li>Clear tagging system to prevent accidental re-energization</li>
+            <li>Supervisor verification for high-voltage systems</li>
+        </ul>
+        
+        <h3>2. Site Safety Assessments</h3>
+        <ul>
+            <li>Daily safety briefings before work begins</li>
+            <li>Hazard identification and risk assessment for each site</li>
+            <li>Emergency response planning specific to each location</li>
+            <li>Regular safety audits and inspections</li>
+        </ul>
+        
+        <h3>3. Electrical Safety Measures</h3>
+        <ul>
+            <li>Voltage testing before touching any conductors</li>
+            <li>Proper grounding and bonding procedures</li>
+            <li>Arc flash boundary establishment and protection</li>
+            <li>Correct cable management and support</li>
+        </ul>
+        
+        <h3>4. Emergency Procedures</h3>
+        <ul>
+            <li>First aid and CPR certified personnel on every site</li>
+            <li>Emergency contact information clearly displayed</li>
+            <li>Fire extinguishers and emergency equipment readily available</li>
+            <li>Regular emergency drills and training</li>
+        </ul>
+        
+        <div class="certification">
+            <h3>Our Certifications & Compliance</h3>
+            <p>Electro Team maintains compliance with:</p>
+            <ul>
+                <li><strong>NFC 15-100:</strong> Algerian standard for low voltage electrical installations</li>
+                <li><strong>ISO 45001:</strong> Occupational health and safety management</li>
+                <li><strong>Local Regulations:</strong> Algerian electrical safety regulations</li>
+                <li><strong>Manufacturer Standards:</strong> Siemens, Schneider, and other equipment standards</li>
+            </ul>
+        </div>
+        
+        <h2>Client Safety Responsibilities</h2>
+        <p>For a safe working environment, we request clients to:</p>
+        <ul>
+            <li>Provide clear and safe access to work areas</li>
+            <li>Inform us of any site-specific hazards</li>
+            <li>Ensure utilities are properly marked and accessible</li>
+            <li>Keep unauthorized personnel away from work areas</li>
+            <li>Follow our safety instructions during work</li>
+        </ul>
+        
+        <h2>Continuous Improvement</h2>
+        <p>Our safety program includes:</p>
+        <ul>
+            <li>Monthly safety training sessions</li>
+            <li>Incident reporting and analysis system</li>
+            <li>Regular equipment safety inspections</li>
+            <li>Client feedback integration</li>
+            <li>Industry best practice adoption</li>
+        </ul>
+        
+        <h2>Contact for Safety Concerns</h2>
+        <p>If you have any safety concerns or questions about our procedures, please contact our Safety Officer:</p>
+        <p><strong>Electro Team Safety Department</strong><br>
+        Phone: 05 40 32 56 16 (24/7 Safety Hotline)<br>
+        Email: safety@electroteam.dz<br>
+        Emergency: Available 24/7</p>
+        
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i>
+            Back to Homepage
+        </a>
+    </div>
+</body>
+</html>
