@@ -1022,7 +1022,6 @@ nav.scrolled .language-picker .lang-current:hover {
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   padding: 40px 20px 40px;
-  touch-action: pan-y;
 }
 
 .service-card {
@@ -1276,7 +1275,6 @@ nav.scrolled .language-picker .lang-current:hover {
   position: relative;
   overflow: hidden;
   width: 100%;
-  touch-action: pan-y;
 }
 
 .projects-list {
@@ -2340,7 +2338,6 @@ nav.scrolled .language-picker .lang-current:hover {
   .services-track {
     padding: 20px 0;
     gap: 20px;
-    touch-action: pan-x pinch-zoom;
   }
   
   .service-card {
@@ -2399,13 +2396,11 @@ nav.scrolled .language-picker .lang-current:hover {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     -ms-overflow-style: none;
     margin-bottom: 2rem;
     height: auto;
     max-height: none;
-    touch-action: pan-x pinch-zoom;
   }
   
   .projects-list::-webkit-scrollbar {
@@ -2674,3 +2669,4 @@ nav.scrolled .language-picker .lang-current:hover {
   }
 
 }
+
