@@ -33,6 +33,343 @@ html {
   scroll-padding-top: 70px;
 }
 
+/* Make sure content sections have proper backgrounds */
+.section {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  filter: blur(40px);
+  z-index: 0;
+}
+
+/* Add floating circuit nodes */
+.circuit-nodes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.circuit-node {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 10px var(--primary-color);
+  animation: nodeFloat 15s infinite linear;
+}
+
+.circuit-node:nth-child(1) { top: 10%; left: 10%; animation-delay: 1s; }
+.circuit-node:nth-child(2) { top: 20%; left: 80%; }
+.circuit-node:nth-child(3) { top: 60%; left: 20%; animation-delay: 0.5s; }
+.circuit-node:nth-child(4) { top: 80%; left: 60%; }
+.circuit-node:nth-child(5) { top: 40%; left: 90%; animation-delay: 2s; }
+.circuit-node:nth-child(6) { top: 90%; left: 30%; animation-delay: 0.5s; }
+.circuit-node:nth-child(7) { top: 30%; left: 40%; animation-delay: 1s; }
+.circuit-node:nth-child(8) { top: 70%; left: 70%; }
+
+@keyframes nodeFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(20px, -20px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(20px, 20px);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(-20px, 20px);
+    opacity: 0.4;
+  }
+}
+
+.circuit-node::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 0;
+  background: linear-gradient(to bottom, 
+    transparent, 
+    rgba(255, 133, 57, 0.3), 
+    transparent
+  );
+  z-index: 0;
+  animation: connectNodes 15s infinite linear;
+  animation-delay: inherit;
+}
+
+/* Create specific connections between nodes */
+.circuit-node:nth-child(1)::before { 
+  height: 150px; 
+  transform: translate(-50%, -50%) rotate(45deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(2)::before { 
+  height: 120px; 
+  transform: translate(-50%, -50%) rotate(-30deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(3)::before { 
+  height: 100px; 
+  transform: translate(-50%, -50%) rotate(15deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(4)::before { 
+  height: 130px; 
+  transform: translate(-50%, -50%) rotate(-60deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(5)::before { 
+  height: 110px; 
+  transform: translate(-50%, -50%) rotate(75deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(6)::before { 
+  height: 140px; 
+  transform: translate(-50%, -50%) rotate(-15deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(7)::before { 
+  height: 90px; 
+  transform: translate(-50%, -50%) rotate(30deg);
+  transform-origin: center;
+}
+.circuit-node:nth-child(8)::before { 
+  height: 160px; 
+  transform: translate(-50%, -50%) rotate(-45deg);
+  transform-origin: center;
+}
+
+
+/* animated shapes */
+
+/* ===== CIRCUITS FOR EACH SECTION ===== */
+
+/* Base styles for all circuits */
+.section-circuit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Common node style */
+.circuit-node {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 10px var(--primary-color);
+  animation: nodeFloat 20s infinite linear;
+  z-index: 0;
+}
+
+/* Common line style */
+.connection {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--primary-color), 
+    transparent
+  );
+  transform-origin: left center;
+  animation: linePulse 6s infinite ease-in-out;
+  z-index: 0;
+  opacity: 0.15;
+}
+
+/* Animation for lines that rotate */
+@keyframes lineRotate {
+  0%, 100% {
+    transform: rotate(var(--start-angle));
+  }
+  50% {
+    transform: rotate(calc(var(--start-angle) + 5deg));
+  }
+}
+
+/* ===== ABOUT SECTION CIRCUIT (6 nodes) ===== */
+.about-circuit .circuit-node:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.about-circuit .circuit-node:nth-child(2) { top: 25%; left: 85%; animation-delay: 2s; }
+.about-circuit .circuit-node:nth-child(3) { top: 55%; left: 15%; animation-delay: 4s; }
+.about-circuit .circuit-node:nth-child(4) { top: 65%; left: 80%; animation-delay: 6s; }
+.about-circuit .circuit-node:nth-child(5) { top: 35%; left: 92%; animation-delay: 1s; }
+.about-circuit .circuit-node:nth-child(6) { top: 85%; left: 25%; animation-delay: 3s; }
+
+.about-circuit .connection-1 {
+  top: 20%; left: 12%; width: 73%;
+  transform: rotate(10deg);
+  animation: lineRotate 8s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 10deg;
+}
+
+.about-circuit .connection-2 {
+  top: 40%; left: 80%; width: 35%;
+  transform: rotate(-45deg);
+  animation: lineRotate 10s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: -45deg;
+}
+
+.about-circuit .connection-3 {
+  top: 60%; left: 20%; width: 60%;
+  transform: rotate(25deg);
+  animation: lineRotate 12s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 25deg;
+}
+
+.about-circuit .connection-4 {
+  top: 50%; left: 85%; width: 7%;
+  transform: rotate(80deg);
+}
+
+/* ===== SERVICES SECTION CIRCUIT (8 nodes) ===== */
+.services-circuit .circuit-node:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.services-circuit .circuit-node:nth-child(2) { top: 20%; left: 60%; animation-delay: 1s; }
+.services-circuit .circuit-node:nth-child(3) { top: 35%; left: 90%; animation-delay: 2s; }
+.services-circuit .circuit-node:nth-child(4) { top: 50%; left: 10%; animation-delay: 3s; }
+.services-circuit .circuit-node:nth-child(5) { top: 65%; left: 40%; animation-delay: 4s; }
+.services-circuit .circuit-node:nth-child(6) { top: 80%; left: 70%; animation-delay: 5s; }
+.services-circuit .circuit-node:nth-child(7) { top: 90%; left: 30%; animation-delay: 6s; }
+.services-circuit .circuit-node:nth-child(8) { top: 75%; left: 85%; animation-delay: 7s; }
+
+.services-circuit .connection-1 {
+  top: 15%; left: 25%; width: 35%;
+  transform: rotate(20deg);
+  animation: lineRotate 7s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 20deg;
+}
+
+.services-circuit .connection-2 {
+  top: 28%; left: 65%; width: 25%;
+  transform: rotate(-15deg);
+  animation: lineRotate 9s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: -15deg;
+}
+
+.services-circuit .connection-3 {
+  top: 43%; left: 15%; width: 75%;
+  transform: rotate(5deg);
+  animation: lineRotate 11s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 5deg;
+}
+
+.services-circuit .connection-4 {
+  top: 58%; left: 45%; width: 25%;
+  transform: rotate(40deg);
+}
+
+.services-circuit .connection-5 {
+  top: 73%; left: 75%; width: 10%;
+  transform: rotate(-25deg);
+  animation: lineRotate 8s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: -25deg;
+}
+
+.services-circuit .connection-6 {
+  top: 83%; left: 50%; width: 35%;
+  transform: rotate(60deg);
+}
+
+/* ===== WHY US SECTION CIRCUIT (7 nodes) ===== */
+.whyus-circuit .circuit-node:nth-child(1) { top: 15%; left: 40%; animation-delay: 0s; }
+.whyus-circuit .circuit-node:nth-child(2) { top: 30%; left: 15%; animation-delay: 1s; }
+.whyus-circuit .circuit-node:nth-child(3) { top: 45%; left: 75%; animation-delay: 2s; }
+.whyus-circuit .circuit-node:nth-child(4) { top: 60%; left: 25%; animation-delay: 3s; }
+.whyus-circuit .circuit-node:nth-child(5) { top: 75%; left: 60%; animation-delay: 4s; }
+.whyus-circuit .circuit-node:nth-child(6) { top: 85%; left: 85%; animation-delay: 5s; }
+.whyus-circuit .circuit-node:nth-child(7) { top: 90%; left: 40%; animation-delay: 6s; }
+
+.whyus-circuit .connection-1 {
+  top: 23%; left: 28%; width: 47%;
+  transform: rotate(35deg);
+  animation: lineRotate 10s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 35deg;
+}
+
+.whyus-circuit .connection-2 {
+  top: 38%; left: 45%; width: 30%;
+  transform: rotate(-20deg);
+}
+
+.whyus-circuit .connection-3 {
+  top: 53%; left: 50%; width: 25%;
+  transform: rotate(15deg);
+  animation: lineRotate 12s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 15deg;
+}
+
+.whyus-circuit .connection-4 {
+  top: 68%; left: 43%; width: 42%;
+  transform: rotate(-5deg);
+}
+
+.whyus-circuit .connection-5 {
+  top: 80%; left: 73%; width: 12%;
+  transform: rotate(70deg);
+  animation: lineRotate 8s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 70deg;
+}
+
+/* ===== PROJECTS SECTION CIRCUIT (5 nodes) ===== */
+.projects-circuit .circuit-node:nth-child(1) { top: 20%; left: 30%; animation-delay: 0s; }
+.projects-circuit .circuit-node:nth-child(2) { top: 40%; left: 80%; animation-delay: 1s; }
+.projects-circuit .circuit-node:nth-child(3) { top: 60%; left: 20%; animation-delay: 2s; }
+.projects-circuit .circuit-node:nth-child(4) { top: 80%; left: 65%; animation-delay: 3s; }
+.projects-circuit .circuit-node:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
+
+.projects-circuit .connection-1 {
+  top: 30%; left: 40%; width: 40%;
+  transform: rotate(25deg);
+  animation: lineRotate 9s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 25deg;
+}
+
+.projects-circuit .connection-2 {
+  top: 50%; left: 50%; width: 30%;
+  transform: rotate(-40deg);
+}
+
+.projects-circuit .connection-3 {
+  top: 70%; left: 43%; width: 22%;
+  transform: rotate(10deg);
+  animation: lineRotate 11s infinite ease-in-out, linePulse 6s infinite ease-in-out;
+  --start-angle: 10deg;
+}
+
+.projects-circuit .connection-4 {
+  top: 65%; left: 35%; width: 45%;
+  transform: rotate(50deg);
+}
+
 body {
   font-family: "Poppins", sans-serif;
   line-height: 1.6;
@@ -43,100 +380,6 @@ body {
   max-width: 100vw;
   position: relative;
 }
-/* ===== ELECTRICAL BOLT DECORATIONS - UPDATED ===== */
-.electric-bolt {
-  position: absolute;
-  font-size: 120px;
-  color: var(--primary-color); /* Full color, no opacity */
-  z-index: 0;
-  opacity: 0.5;
-  pointer-events: none;
-  animation: boltPulse 3s infinite alternate ease-in-out;
-  filter: drop-shadow(0 0 5px rgba(255, 133, 57, 0.3));
-}
-
-/* Size variations */
-.electric-bolt.size-1 { font-size: 80px; }
-.electric-bolt.size-2 { font-size: 100px; }
-.electric-bolt.size-3 { font-size: 120px; }
-.electric-bolt.size-4 { font-size: 140px; }
-.electric-bolt.size-5 { font-size: 160px; }
-
-/* Rotation variations */
-.electric-bolt.rotate-1 { transform: rotate(0deg); }
-.electric-bolt.rotate-2 { transform: rotate(45deg); }
-.electric-bolt.rotate-3 { transform: rotate(90deg); }
-.electric-bolt.rotate-4 { transform: rotate(-45deg); }
-.electric-bolt.rotate-5 { transform: rotate(-90deg); }
-
-/* Animation variations */
-.electric-bolt.animation-1 { animation-duration: 2s; }
-.electric-bolt.animation-2 { animation-duration: 3s; }
-.electric-bolt.animation-3 { animation-duration: 4s; }
-.electric-bolt.animation-4 { animation-duration: 2.5s; animation-direction: alternate-reverse; }
-.electric-bolt.animation-5 { animation-duration: 3.5s; animation-timing-function: ease-out; }
-
-@keyframes boltPulse {
-  0% { 
-    transform: scale(0.95); 
-    filter: drop-shadow(0 0 3px rgba(255, 133, 57, 0.2));
-  }
-  100% { 
-    transform: scale(1.05); 
-    filter: drop-shadow(0 0 8px rgba(255, 133, 57, 0.5));
-  }
-}
-
-/* ===== BOLT POSITIONS FOR EACH SECTION ===== */
-
-/* Hero Section - 5 bolts */
-.hero .bolt-1 { top: 10%; left: 5%; }
-.hero .bolt-2 { top: 20%; right: 15%; }
-.hero .bolt-3 { bottom: 30%; left: 20%; }
-.hero .bolt-4 { bottom: 15%; right: 25%; }
-.hero .bolt-5 { top: 40%; left: 35%; }
-
-/* About Section - 5 bolts */
-.about-section .bolt-1 { top: 15%; right: 10%; }
-.about-section .bolt-2 { top: 35%; left: 15%; }
-.about-section .bolt-3 { bottom: 25%; right: 20%; }
-.about-section .bolt-4 { top: 60%; left: 30%; }
-.about-section .bolt-5 { bottom: 40%; right: 35%; }
-
-/* Services Section - 5 bolts */
-.services-section .bolt-1 { bottom: 20%; left: 10%; }
-.services-section .bolt-2 { top: 25%; right: 25%; }
-.services-section .bolt-3 { bottom: 45%; right: 15%; }
-.services-section .bolt-4 { top: 15%; left: 30%; }
-.services-section .bolt-5 { bottom: 35%; left: 40%; }
-
-/* Why Us Section - 5 bolts */
-.whyus-section .bolt-1 { top: 20%; left: 15%; }
-.whyus-section .bolt-2 { top: 45%; right: 20%; }
-.whyus-section .bolt-3 { bottom: 30%; left: 25%; }
-.whyus-section .bolt-4 { top: 65%; right: 35%; }
-.whyus-section .bolt-5 { bottom: 55%; left: 40%; }
-
-/* Projects Section - 5 bolts */
-.projects-section .bolt-1 { bottom: 15%; right: 10%; }
-.projects-section .bolt-2 { top: 20%; left: 20%; }
-.projects-section .bolt-3 { bottom: 40%; right: 30%; }
-.projects-section .bolt-4 { top: 35%; left: 35%; }
-.projects-section .bolt-5 { bottom: 60%; right: 40%; }
-
-/* Team Section - 5 bolts */
-.team .bolt-1 { top: 15%; right: 15%; }
-.team .bolt-2 { top: 40%; left: 25%; }
-.team .bolt-3 { bottom: 30%; right: 30%; }
-.team .bolt-4 { top: 65%; left: 40%; }
-.team .bolt-5 { bottom: 50%; right: 45%; }
-
-/* Contact Section - 5 bolts */
-.contact .bolt-1 { bottom: 20%; left: 15%; }
-.contact .bolt-2 { top: 25%; right: 30%; }
-.contact .bolt-3 { bottom: 45%; left: 35%; }
-.contact .bolt-4 { top: 50%; right: 40%; }
-.contact .bolt-5 { bottom: 65%; left: 45%; }
 
 /* Skeleton Loading */
 .skeleton-image {
@@ -189,7 +432,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--dark-color);
+  background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,14 +459,21 @@ body {
 }
 
 .logo-icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: var(--primary-color);
-  animation: electricPulse 2s infinite;
+  animation: electricGlow 1.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
 }
 
-@keyframes electricPulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
+@keyframes electricGlow {
+  0% {
+    filter: drop-shadow(0 0 5px var(--primary-color));
+    transform: scale(1);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px var(--primary-color));
+    transform: scale(1.1);
+  }
 }
 
 .logo-text {
@@ -245,18 +495,55 @@ body {
   color: var(--primary-color);
 }
 
+/* Enhanced loading spinner */
 .loading-spinner {
   width: 50px;
   height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.1);
-  border-left-color: var(--primary-color);
+  border: 4px solid transparent;
+  border-top: 4px solid var(--primary-color);
+  border-right: 4px solid var(--secondary-color);
+  border-bottom: 4px solid var(--primary-color);
+  border-left: 4px solid var(--secondary-color);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite, colorShift 2s linear infinite;
   margin: 0 auto 1.5rem;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
+}
+
+@keyframes colorShift {
+  0% {
+    border-top-color: var(--primary-color);
+    border-right-color: var(--secondary-color);
+    border-bottom-color: var(--primary-color);
+    border-left-color: var(--secondary-color);
+  }
+  25% {
+    border-top-color: var(--secondary-color);
+    border-right-color: var(--accent-color);
+    border-bottom-color: var(--secondary-color);
+    border-left-color: var(--accent-color);
+  }
+  50% {
+    border-top-color: var(--accent-color);
+    border-right-color: var(--primary-color);
+    border-bottom-color: var(--accent-color);
+    border-left-color: var(--primary-color);
+  }
+  75% {
+    border-top-color: var(--primary-color);
+    border-right-color: var(--accent-color);
+    border-bottom-color: var(--primary-color);
+    border-left-color: var(--accent-color);
+  }
+  100% {
+    border-top-color: var(--primary-color);
+    border-right-color: var(--secondary-color);
+    border-bottom-color: var(--primary-color);
+    border-left-color: var(--secondary-color);
+  }
 }
 
 .loading-content p {
@@ -306,7 +593,6 @@ body {
 }
 
 nav {
-  /* Remove the backdrop-filter line */
   position: fixed;
   top: 0;
   left: 0;
@@ -317,7 +603,6 @@ nav {
   align-items: center;
   justify-content: space-between;
   background-color: var(--dark-transparent-color);
-  /* REMOVE THIS LINE: backdrop-filter: blur(10px); */
   z-index: 1000;
   box-shadow: var(--shadow);
   transition: var(--transition);
@@ -507,7 +792,6 @@ nav.scrolled .language-picker .lang-current:hover {
 }
 
 .mobile-sidebar {
-  /* Remove the backdrop-filter line here too */
   position: fixed;
   top: 0;
   right: -100%;
@@ -515,7 +799,6 @@ nav.scrolled .language-picker .lang-current:hover {
   max-width: 85vw;
   height: 100%;
   background: var(--dark-transparent-color);
-  /* REMOVE THIS LINE: backdrop-filter: blur(20px); */
   box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
   transition: var(--transition);
   z-index: 1002;
@@ -791,6 +1074,7 @@ nav.scrolled .language-picker .lang-current:hover {
 }
 
 .split-text {
+  height: 40vw;
   padding-right: 40px;
 }
 
@@ -865,7 +1149,6 @@ nav.scrolled .language-picker .lang-current:hover {
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-top: 3rem;
   position: relative;
   z-index: 10;
 }
@@ -1315,6 +1598,7 @@ nav.scrolled .language-picker .lang-current:hover {
   box-shadow: var(--shadow);
   width: 100%;
   max-width: 100%;
+  min-height: 48vw;
   box-sizing: border-box;
   margin: 0 auto;
 }
@@ -2232,6 +2516,25 @@ nav.scrolled .language-picker .lang-current:hover {
   .loading-content p {
     animation: none;
   }
+  
+  body::before {
+    animation: none !important;
+    background-image: none !important;
+  }
+  
+  .circuit-nodes {
+    display: none !important;
+  }
+  
+  .hero::after {
+    animation: none;
+    opacity: 0.5;
+  }
+  
+  .circuit-node {
+    animation: none;
+    opacity: 0.1;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -2247,6 +2550,7 @@ nav.scrolled .language-picker .lang-current:hover {
   }
   
   .split-text {
+    height: 50vw;
     padding-right: 0;
   }
   
@@ -2388,6 +2692,7 @@ nav.scrolled .language-picker .lang-current:hover {
   }
   
   .split-text {
+    height: 130vw;
     padding-right: 0;
   }
   
@@ -2422,8 +2727,7 @@ nav.scrolled .language-picker .lang-current:hover {
     grid-template-columns: 1fr;
     gap: 20px;
     padding: 20px;
-    min-height: auto;
-    height: auto;
+    height: 200vw;
   }
   
   .project-image-main {
@@ -2566,6 +2870,22 @@ nav.scrolled .language-picker .lang-current:hover {
     height: 45px;
     font-size: 1.2rem;
   }
+  
+  /* Optimize circuit pattern for mobile */
+  body::before {
+    background-size: 100px 100px;
+    animation: circuitShift 240s linear infinite;
+  }
+  
+  .circuit-node {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .hero::after {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2667,6 +2987,4 @@ nav.scrolled .language-picker .lang-current:hover {
   .service-image {
     height: 150px;
   }
-
 }
-
