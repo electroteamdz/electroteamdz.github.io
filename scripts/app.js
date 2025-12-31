@@ -37,10 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             navToggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
             console.log('Mobile menu opened');
-            
-            // Focus trap
-            const firstFocusable = mobileSidebar.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            if (firstFocusable) firstFocusable.focus();
         });
     }
 
@@ -51,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
         console.log('Mobile menu closed');
         
-        // Return focus to menu toggle
-        if (navToggle) navToggle.focus();
     }
 
     if (mobileOverlay) {
@@ -282,8 +276,6 @@ Time: ${new Date().toLocaleTimeString()}
                         }
                     });
                     
-                    // Return focus to first input
-                    document.getElementById('contactName').focus();
                     
                 }, 3000);
                 
@@ -415,14 +407,6 @@ Time: ${new Date().toLocaleTimeString()}
         card.addEventListener('mouseleave', () => {
             card.style.transform = 'translateY(0)';
             card.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-        });
-        
-        // Keyboard focus styles
-        card.addEventListener('focus', () => {
-            card.style.transform = 'translateY(-10px)';
-            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-            card.style.outline = '3px solid var(--primary-color)';
-            card.style.outlineOffset = '5px';
         });
         
         card.addEventListener('blur', () => {
@@ -578,7 +562,6 @@ Time: ${new Date().toLocaleTimeString()}
             const mainContent = document.querySelector('main');
             if (mainContent) {
                 mainContent.tabIndex = -1;
-                mainContent.focus();
                 announceToScreenReader('Skipped to main content');
             }
         }
