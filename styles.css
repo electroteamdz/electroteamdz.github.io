@@ -2692,7 +2692,7 @@ nav.scrolled .language-picker .lang-current:hover {
   }
   
   .split-text {
-    height: 130vw;
+    height: 150vw;
     padding-right: 0;
   }
   
@@ -2988,3 +2988,4 @@ nav.scrolled .language-picker .lang-current:hover {
     height: 150px;
   }
 }
+
