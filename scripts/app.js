@@ -585,7 +585,7 @@ Time: ${new Date().toLocaleTimeString()}
     // ===== ENHANCED ERROR HANDLING =====
     window.addEventListener('error', function(e) {
         console.error('Global error caught:', e.error);
-        // You could send this to an error tracking service here
+        // We could send this to an error tracking service here
     });
     
     window.addEventListener('unhandledrejection', function(e) {
@@ -595,7 +595,7 @@ Time: ${new Date().toLocaleTimeString()}
     console.log('All JavaScript functionality initialized');
 });
 
-// Handle page visibility changes
+// Handles page visibility changes
 document.addEventListener('visibilitychange', function() {
     const heroVideo = document.querySelector('.hero-video');
     if (heroVideo) {
