@@ -1,16 +1,10 @@
-// animations.js - Carousel animations WITHOUT any touch/swipe support
+// animations.js - Carousel animations with proper mobile swipe support
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Animations initialized');
     
-    // ===== ABOUT SPLIT CAROUSEL =====
-    initSplitCarousel();
-    
     // ===== SERVICES CAROUSEL =====
     initServicesCarousel();
-    
-    // ===== WHY US FEATURE CAROUSEL =====
-    initFeatureCarousel();
     
     // ===== PROJECTS CAROUSEL =====
     initProjectsCarousel();
@@ -21,107 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== LANGUAGE PICKER =====
     initLanguagePicker();
     
-    // ===== SPLIT CAROUSEL FUNCTIONS =====
-    function initSplitCarousel() {
-        const splitSlides = document.querySelectorAll('.split-slide');
-        const splitImages = document.querySelectorAll('.split-image img');
-        const dots = document.querySelectorAll('.split-dots .dot');
-        const prevBtn = document.querySelector('.split-prev');
-        const nextBtn = document.querySelector('.split-next');
-        
-        if (!splitSlides.length) {
-            console.log('No split slides found');
-            return;
-        }
-        
-        console.log('Split carousel initialized:', {
-            slides: splitSlides.length,
-            images: splitImages.length,
-            dots: dots.length
-        });
-        
-        let currentIndex = 0;
-        
-        function updateSplitCarousel(index) {
-            // Validate index
-            if (index < 0) index = 0;
-            if (index >= splitSlides.length) index = splitSlides.length - 1;
-            
-            // Remove active from all slides
-            splitSlides.forEach(slide => {
-                slide.classList.remove('active');
-                slide.hidden = true;
-                slide.setAttribute('aria-hidden', 'true');
-            });
-            
-            // Remove active from all images
-            splitImages.forEach(img => {
-                img.classList.remove('active');
-                img.style.opacity = '0';
-                img.style.transform = 'scale(1.1)';
-            });
-            
-            // Add active to current slide
-            splitSlides[index].classList.add('active');
-            splitSlides[index].hidden = false;
-            splitSlides[index].setAttribute('aria-hidden', 'false');
-            
-            // Add active to current image
-            setTimeout(() => {
-                splitImages[index].classList.add('active');
-                splitImages[index].style.opacity = '1';
-                splitImages[index].style.transform = 'scale(1)';
-            }, 50);
-            
-            // Update dots
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === index);
-                dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-            });
-            
-            currentIndex = index;
-            console.log('Carousel updated to index:', index);
-        }
-        
-        // Event listeners - ONLY BUTTON CLICKS
-        if (prevBtn) {
-            prevBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const newIndex = (currentIndex - 1 + splitSlides.length) % splitSlides.length;
-                console.log('Previous clicked, moving to index:', newIndex);
-                updateSplitCarousel(newIndex);
-            });
-        }
-        
-        if (nextBtn) {
-            nextBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const newIndex = (currentIndex + 1) % splitSlides.length;
-                console.log('Next clicked, moving to index:', newIndex);
-                updateSplitCarousel(newIndex);
-            });
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('Dot clicked, moving to index:', index);
-                updateSplitCarousel(index);
-            });
-            
-            dot.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    updateSplitCarousel(index);
-                }
-            });
-        });
-        
-        // Initialize with first slide active
-        updateSplitCarousel(0);
-    }
-    
-    // ===== SERVICES CAROUSEL FUNCTIONS - NO TOUCH/SWIPE =====
+    // ===== SERVICES CAROUSEL FUNCTIONS =====
     function initServicesCarousel() {
         const servicesTrack = document.querySelector('.services-track');
         const serviceCards = document.querySelectorAll('.service-card');
@@ -129,48 +23,94 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.querySelector('.services-next');
         const servicesCarousel = document.querySelector('.services-carousel');
         
-        if (!servicesTrack || !serviceCards.length) return;
-        
-        let currentSlide = 0;
-        
-        function getVisibleCards() {
-            if (window.innerWidth >= 1024) return 3;
-            if (window.innerWidth >= 768) return 2;
-            return 1;
+        if (!servicesTrack || !serviceCards.length) {
+            console.log('Services carousel elements not found');
+            return;
         }
         
-        function updateServicesCarousel() {
-            const visibleCards = getVisibleCards();
-            const totalSlides = Math.ceil(serviceCards.length / visibleCards);
-            
-            // Calculate the width of one slide
+        let currentSlide = 0;
+        let isTransitioning = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartTime = 0;
+        let isDragging = false;
+        let currentTranslate = 0;
+        let initialTranslate = 0;
+        let animationId = 0;
+        
+        // Calculate slide width based on card width
+        function getDesktopSlideWidth() {
             const card = serviceCards[0];
-            if (!card) return;
+            if (!card) return 0;
             
             const cardWidth = card.offsetWidth;
-            const gap = 20;
-            const slideWidth = (cardWidth + gap) * visibleCards;
+            const gap = window.innerWidth <= 768 ? 20 : 24;
+            return cardWidth*2+gap*2;
+        }
+        
+        function getMobileSlideWidth() {
+            const card = serviceCards[0];
+            if (!card) return 0;
             
-            // Use CSS transform for smooth animation
+            const cardWidth = card.offsetWidth;
+            const gap = window.innerWidth <= 768 ? 20 : 24;
+            return cardWidth+gap;
+        }
+
+        function getSlideWidth() {
+            const isMobile = window.innerWidth <= 768;
+            return isMobile ? getMobileSlideWidth() : getDesktopSlideWidth();
+        }
+
+        function getTotalSlides() {
+            const isMobile = window.innerWidth <= 768;
+            return isMobile ? 4 : 2;
+        }
+        
+        function updateServicesCarousel(direction) {
+            if (isTransitioning) return;
+            
+            // Calculate new slide position
+            const newSlide = currentSlide + direction;
+            
+            // Check bounds
+            if (newSlide < 0 || newSlide >= getTotalSlides()) return;
+            
+            isTransitioning = true;
+            
+            // Get slide width
+            const slideWidth = getSlideWidth();
+            if (slideWidth === 0) return;
+            
+            console.log(`Moving from slide ${currentSlide} to ${newSlide}, width: ${slideWidth}`);
+            
+            // Update current slide
+            currentSlide = newSlide;
+            
+            // Apply transform
             const translateX = -currentSlide * slideWidth;
+            currentTranslate = translateX;
+            servicesTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             servicesTrack.style.transform = `translateX(${translateX}px)`;
             
-            // Update button states and aria labels
+            // Update button states
+            updateButtonStates();
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 600);
+        }
+        
+        function updateButtonStates() {
             if (prevBtn) {
                 prevBtn.disabled = currentSlide === 0;
                 prevBtn.classList.toggle('hidden', currentSlide === 0);
-                prevBtn.setAttribute('aria-label', currentSlide === 0 ? 
-                    'No previous services available' : 
-                    `Previous services, currently viewing set ${currentSlide + 1} of ${totalSlides}`);
             }
             
             if (nextBtn) {
-                const isLastSlide = currentSlide >= totalSlides - 1 || serviceCards.length <= visibleCards;
+                const isLastSlide = currentSlide >= getTotalSlides() - 1;
                 nextBtn.disabled = isLastSlide;
                 nextBtn.classList.toggle('hidden', isLastSlide);
-                nextBtn.setAttribute('aria-label', isLastSlide ?
-                    'No more services available' :
-                    `Next services, currently viewing set ${currentSlide + 1} of ${totalSlides}`);
             }
         }
         
@@ -179,13 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.stopPropagation();
                 e.preventDefault();
             }
-            const visibleCards = getVisibleCards();
-            const totalSlides = Math.ceil(serviceCards.length / visibleCards);
-            
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateServicesCarousel();
-            }
+            updateServicesCarousel(1);
         }
         
         function prevSlide(e) {
@@ -193,13 +127,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.stopPropagation();
                 e.preventDefault();
             }
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateServicesCarousel();
-            }
+            updateServicesCarousel(-1);
         }
         
-        // Event listeners - ONLY BUTTON CLICKS, NO TOUCH/SWIPE
+        // Event listeners for buttons
         if (prevBtn) {
             prevBtn.addEventListener('click', prevSlide);
         }
@@ -208,155 +139,241 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.addEventListener('click', nextSlide);
         }
         
+        // Initialize button states
+        updateButtonStates();
+        
+        // Mobile swipe support
+        if (servicesCarousel) {
+            const isMobile = () => window.innerWidth <= 768;
+            
+            // Touch start
+            servicesCarousel.addEventListener('touchstart', (e) => {
+                if (!isMobile()) return;
+                
+                touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
+                isDragging = true;
+                initialTranslate = currentTranslate;
+                
+                // Disable transition during drag
+                servicesTrack.style.transition = 'none';
+                
+                // Cancel any ongoing animation
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+            }, { passive: true });
+            
+            // Touch move
+            servicesCarousel.addEventListener('touchmove', (e) => {
+                if (!isMobile() || !isDragging) return;
+                
+                const currentX = e.touches[0].clientX;
+                const diff = currentX - touchStartX;
+                
+                // Calculate new translate position
+                let newTranslate = initialTranslate + diff;
+                
+                // Calculate boundaries
+                const slideWidth = getSlideWidth();
+                const maxTranslate = 0;
+                const minTranslate = -(getTotalSlides() - 1) * slideWidth;
+                
+                // Apply resistance at boundaries
+                if (newTranslate > maxTranslate) {
+                    newTranslate = maxTranslate + (diff * 0.3);
+                } else if (newTranslate < minTranslate) {
+                    newTranslate = minTranslate + ((newTranslate - minTranslate) * 0.3);
+                }
+                
+                currentTranslate = newTranslate;
+                servicesTrack.style.transform = `translateX(${currentTranslate}px)`;
+            }, { passive: true });
+            
+            // Touch end
+            servicesCarousel.addEventListener('touchend', (e) => {
+                if (!isMobile() || !isDragging) return;
+                
+                touchEndX = e.changedTouches[0].clientX;
+                const touchEndTime = Date.now();
+                const timeDiff = touchEndTime - touchStartTime;
+                const swipeThreshold = 50;
+                const speedThreshold = 300;
+                const diff = touchStartX - touchEndX;
+                
+                isDragging = false;
+                
+                // Restore transition
+                servicesTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                // Determine if swipe was significant
+                const isFastSwipe = timeDiff < speedThreshold && Math.abs(diff) > 30;
+                const isLongSwipe = Math.abs(diff) > swipeThreshold;
+                
+                if (isFastSwipe || isLongSwipe) {
+                    if (diff > 0) {
+                        // Swipe left - next
+                        nextSlide();
+                    } else {
+                        // Swipe right - previous
+                        prevSlide();
+                    }
+                } else {
+                    // Snap back to current position
+                    const slideWidth = getSlideWidth();
+                    const translateX = -currentSlide * slideWidth;
+                    currentTranslate = translateX;
+                    servicesTrack.style.transform = `translateX(${translateX}px)`;
+                }
+            }, { passive: true });
+            
+            // Touch cancel
+            servicesCarousel.addEventListener('touchcancel', () => {
+                if (!isMobile()) return;
+                isDragging = false;
+                servicesTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                const slideWidth = getSlideWidth();
+                const translateX = -currentSlide * slideWidth;
+                servicesTrack.style.transform = `translateX(${translateX}px)`;
+            }, { passive: true });
+        }
+        
         // Resize handling
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                const newVisibleCards = getVisibleCards();
-                const newTotalSlides = Math.ceil(serviceCards.length / newVisibleCards);
+                // Recalculate position based on new dimensions
+                const slideWidth = getSlideWidth();
+                const translateX = -currentSlide * slideWidth;
                 
-                // Adjust current slide if out of bounds
-                if (currentSlide >= newTotalSlides) {
-                    currentSlide = Math.max(0, newTotalSlides - 1);
-                }
+                // Temporarily disable transition during resize
+                servicesTrack.style.transition = 'none';
+                servicesTrack.style.transform = `translateX(${translateX}px)`;
+                currentTranslate = translateX;
                 
-                updateServicesCarousel();
+                // Force reflow
+                servicesTrack.offsetHeight;
+                
+                // Restore transition
+                servicesTrack.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             }, 150);
         });
-        
-        // Initialize
-        updateServicesCarousel();
     }
     
-    // ===== FEATURE CAROUSEL FUNCTIONS =====
-    function initFeatureCarousel() {
-        const featureSlides = document.querySelectorAll('.feature-slide');
-        const featureDots = document.querySelectorAll('.feature-dot');
-        
-        if (!featureSlides.length) return;
-        
-        let currentIndex = 0;
-        
-        function updateFeatureCarousel(index) {
-            // Update slides
-            featureSlides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                slide.hidden = i !== index;
-                if (i === index) {
-                    slide.classList.add('active');
-                    slide.removeAttribute('hidden');
-                }
-            });
-            
-            // Update dots
-            featureDots.forEach((dot, i) => {
-                dot.classList.remove('active');
-                dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-                dot.setAttribute('tabindex', i === index ? '0' : '-1');
-                if (i === index) {
-                    dot.classList.add('active');
-                }
-            });
-            
-            currentIndex = index;
-        }
-        
-        function nextFeature() {
-            const newIndex = (currentIndex + 1) % featureSlides.length;
-            updateFeatureCarousel(newIndex);
-        }
-        
-        function prevFeature() {
-            const newIndex = (currentIndex - 1 + featureSlides.length) % featureSlides.length;
-            updateFeatureCarousel(newIndex);
-        }
-        
-        // Event listeners - ONLY CLICKS
-        featureDots.forEach((dot, index) => {
-            dot.addEventListener('click', () => updateFeatureCarousel(index));
-            dot.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    updateFeatureCarousel(index);
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    const newIndex = (index + 1) % featureDots.length;
-                    updateFeatureCarousel(newIndex);
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    const newIndex = (index - 1 + featureDots.length) % featureDots.length;
-                    updateFeatureCarousel(newIndex);
-                }
-            });
-        });
-        
-        // Initialize
-        updateFeatureCarousel(0);
-    }
-    
-    // ===== PROJECTS CAROUSEL FUNCTIONS - NO TOUCH/SWIPE =====
+    // ===== PROJECTS CAROUSEL FUNCTIONS =====
     function initProjectsCarousel() {
+        const projectsList = document.querySelector('.projects-list');
         const projectItems = document.querySelectorAll('.project-item');
         const dots = document.querySelectorAll('.projects-dots .dot');
         const prevBtn = document.querySelector('.projects-prev');
         const nextBtn = document.querySelector('.projects-next');
         const projectsCarousel = document.querySelector('.projects-carousel');
         
-        if (!projectItems.length) return;
+        if (!projectsList || !projectItems.length) {
+            console.log('Projects carousel elements not found');
+            return;
+        }
         
         let currentIndex = 0;
+        let isTransitioning = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let touchStartTime = 0;
+        let isDragging = false;
+        let currentTranslate = 0;
+        let initialTranslate = 0;
+        
+        function getItemWidth() {
+            const isMobile = window.innerWidth <= 768;
+            const gap = isMobile ? 20 : 32;
+            const container = projectsCarousel;
+            
+            if (!container) return 0;
+            
+            const containerWidth = container.clientWidth || container.offsetWidth;
+            return containerWidth + gap;
+        }
         
         function updateProjectsCarousel(index) {
-            // Remove active class from all items
-            projectItems.forEach(item => {
-                item.classList.remove('active');
-                item.hidden = true;
-            });
+            if (isTransitioning) return;
             
-            // Add active class to current item
-            projectItems[index].classList.add('active');
-            projectItems[index].hidden = false;
+            // Ensure index is within bounds
+            if (index < 0) index = 0;
+            if (index >= projectItems.length) index = projectItems.length - 1;
+            
+            // Don't update if index hasn't changed
+            if (index === currentIndex) return;
+            
+            isTransitioning = true;
+            currentIndex = index;
+            
+            // Calculate transform
+            const itemWidth = getItemWidth();
+            if (itemWidth === 0) return;
+            
+            const translateX = -itemWidth * index;
+            currentTranslate = translateX;
+            
+            projectsList.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            projectsList.style.transform = `translateX(${translateX}px)`;
             
             // Update dots
+            updateDots();
+            
+            // Update button states
+            updateButtonStates();
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 600);
+        }
+        
+        function updateDots() {
             dots.forEach((dot, i) => {
                 dot.classList.remove('active');
-                dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-                if (i === index) {
+                dot.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+                if (i === currentIndex) {
                     dot.classList.add('active');
                 }
             });
-            
-            currentIndex = index;
-            
-            // Update button aria labels
+        }
+        
+        function updateButtonStates() {
             if (prevBtn) {
-                prevBtn.setAttribute('aria-label', `Previous project, currently viewing project ${index + 1} of ${projectItems.length}`);
+                prevBtn.disabled = currentIndex === 0;
+                prevBtn.classList.toggle('hidden', currentIndex === 0);
             }
             if (nextBtn) {
-                nextBtn.setAttribute('aria-label', `Next project, currently viewing project ${index + 1} of ${projectItems.length}`);
+                nextBtn.disabled = currentIndex >= projectItems.length - 1;
+                nextBtn.classList.toggle('hidden', currentIndex >= projectItems.length - 1);
             }
         }
         
         function nextProject() {
-            const newIndex = (currentIndex + 1) % projectItems.length;
-            updateProjectsCarousel(newIndex);
+            updateProjectsCarousel(currentIndex + 1);
         }
         
         function prevProject() {
-            const newIndex = (currentIndex - 1 + projectItems.length) % projectItems.length;
-            updateProjectsCarousel(newIndex);
+            updateProjectsCarousel(currentIndex - 1);
         }
         
-        // Event listeners - ONLY BUTTON CLICKS, NO TOUCH/SWIPE
+        // Button event listeners
         if (prevBtn) {
-            prevBtn.addEventListener('click', prevProject);
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                prevProject();
+            });
         }
         
         if (nextBtn) {
-            nextBtn.addEventListener('click', nextProject);
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                nextProject();
+            });
         }
         
+        // Dot event listeners
         dots.forEach((dot, index) => {
             dot.addEventListener('click', () => updateProjectsCarousel(index));
             dot.addEventListener('keydown', (e) => {
@@ -367,17 +384,103 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        // Initialize
+        updateDots();
+        updateButtonStates();
+        
+        // Mobile swipe support
+        if (projectsCarousel) {
+            const isMobile = () => window.innerWidth <= 768;
+            
+            projectsCarousel.addEventListener('touchstart', (e) => {
+                if (!isMobile()) return;
+                
+                touchStartX = e.touches[0].clientX;
+                touchStartTime = Date.now();
+                isDragging = true;
+                initialTranslate = currentTranslate;
+                
+                projectsList.style.transition = 'none';
+            }, { passive: true });
+            
+            projectsCarousel.addEventListener('touchmove', (e) => {
+                if (!isMobile() || !isDragging) return;
+                
+                const currentX = e.touches[0].clientX;
+                const diff = currentX - touchStartX;
+                
+                let newTranslate = initialTranslate + diff;
+                
+                const itemWidth = getItemWidth();
+                const maxTranslate = 0;
+                const minTranslate = -(projectItems.length - 1) * itemWidth;
+                
+                if (newTranslate > maxTranslate) {
+                    newTranslate = maxTranslate + (diff * 0.3);
+                } else if (newTranslate < minTranslate) {
+                    newTranslate = minTranslate + ((newTranslate - minTranslate) * 0.3);
+                }
+                
+                currentTranslate = newTranslate;
+                projectsList.style.transform = `translateX(${currentTranslate}px)`;
+            }, { passive: true });
+            
+            projectsCarousel.addEventListener('touchend', (e) => {
+                if (!isMobile() || !isDragging) return;
+                
+                touchEndX = e.changedTouches[0].clientX;
+                const touchEndTime = Date.now();
+                const timeDiff = touchEndTime - touchStartTime;
+                const swipeThreshold = 50;
+                const speedThreshold = 300;
+                const diff = touchStartX - touchEndX;
+                
+                isDragging = false;
+                
+                projectsList.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                const isFastSwipe = timeDiff < speedThreshold && Math.abs(diff) > 30;
+                const isLongSwipe = Math.abs(diff) > swipeThreshold;
+                
+                if (isFastSwipe || isLongSwipe) {
+                    if (diff > 0) {
+                        nextProject();
+                    } else {
+                        prevProject();
+                    }
+                } else {
+                    const itemWidth = getItemWidth();
+                    const translateX = -currentIndex * itemWidth;
+                    projectsList.style.transform = `translateX(${translateX}px)`;
+                }
+            }, { passive: true });
+            
+            projectsCarousel.addEventListener('touchcancel', () => {
+                if (!isMobile()) return;
+                isDragging = false;
+                projectsList.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                const itemWidth = getItemWidth();
+                const translateX = -currentIndex * itemWidth;
+                projectsList.style.transform = `translateX(${translateX}px)`;
+            }, { passive: true });
+        }
+        
         // Handle resize
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                updateProjectsCarousel(currentIndex);
+                const itemWidth = getItemWidth();
+                const translateX = -currentIndex * itemWidth;
+                
+                projectsList.style.transition = 'none';
+                projectsList.style.transform = `translateX(${translateX}px)`;
+                currentTranslate = translateX;
+                
+                projectsList.offsetHeight;
+                projectsList.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             }, 250);
         });
-        
-        // Initialize
-        updateProjectsCarousel(0);
     }
     
     // ===== MOBILE MENU FUNCTIONS =====
@@ -387,19 +490,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileSidebar = document.querySelector('.mobile-sidebar');
         const closeSidebar = document.querySelector('.close-sidebar');
         
-        if (!navToggle || !mobileOverlay || !mobileSidebar || !closeSidebar) return;
+        if (!navToggle || !mobileOverlay || !mobileSidebar || !closeSidebar) {
+            console.log('Mobile menu elements not found');
+            return;
+        }
         
         function openMobileMenu() {
             mobileOverlay.classList.add('active');
             mobileSidebar.classList.add('active');
             navToggle.setAttribute('aria-expanded', 'true');
-            
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
         
         function closeMobileMenu() {
             mobileOverlay.classList.remove('active');
             mobileSidebar.classList.remove('active');
             navToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = ''; // Restore scrolling
         }
         
         // Event listeners
@@ -413,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
             link.addEventListener('click', closeMobileMenu);
         });
         
-        // Keyboard navigation for mobile menu
+        // Keyboard navigation
         mobileSidebar.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeMobileMenu();
@@ -432,82 +539,96 @@ document.addEventListener('DOMContentLoaded', function() {
     function initLanguagePicker() {
         const languagePickers = document.querySelectorAll('.language-picker');
         
+        if (!languagePickers.length) {
+            console.log('Language picker elements not found');
+            return;
+        }
+        
+        // Close all pickers function
+        function closeAllPickers(except = null) {
+            languagePickers.forEach(picker => {
+                if (picker !== except) {
+                    picker.classList.remove('active');
+                    const langCurrent = picker.querySelector('.lang-current');
+                    if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        
         languagePickers.forEach(picker => {
             const langCurrent = picker.querySelector('.lang-current');
+            const langOptions = picker.querySelectorAll('.lang-option');
             
             if (langCurrent) {
                 langCurrent.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    picker.classList.toggle('active');
-                    this.setAttribute('aria-expanded', picker.classList.contains('active'));
+                    const isActive = picker.classList.contains('active');
+                    closeAllPickers(isActive ? null : picker);
+                    picker.classList.toggle('active', !isActive);
+                    this.setAttribute('aria-expanded', !isActive);
                 });
                 
-                // Keyboard support
+                // Keyboard support for current language
                 langCurrent.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        picker.classList.toggle('active');
-                        this.setAttribute('aria-expanded', picker.classList.contains('active'));
+                        const isActive = picker.classList.contains('active');
+                        closeAllPickers(isActive ? null : picker);
+                        picker.classList.toggle('active', !isActive);
+                        this.setAttribute('aria-expanded', !isActive);
                     } else if (e.key === 'Escape' && picker.classList.contains('active')) {
                         picker.classList.remove('active');
                         this.setAttribute('aria-expanded', 'false');
+                        closeAllPickers();
                     }
                 });
             }
+            
+            // Handle language selection
+            langOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const codeSpan = this.querySelector('.lang-code');
+                    const currentCodeSpan = this.closest('.language-picker').querySelector('.lang-current .lang-code');
+                    
+                    if (currentCodeSpan && codeSpan) {
+                        currentCodeSpan.textContent = codeSpan.textContent;
+                    }
+                    
+                    // Close dropdown
+                    const picker = this.closest('.language-picker');
+                    if (picker) {
+                        picker.classList.remove('active');
+                        const langCurrent = picker.querySelector('.lang-current');
+                        if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
+                    }
+                    
+                    closeAllPickers();
+                });
+                
+                // Keyboard support for options
+                option.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        this.click();
+                    }
+                });
+            });
         });
         
-        // Close all language pickers when clicking outside
+        // Close when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.language-picker')) {
-                languagePickers.forEach(picker => {
-                    picker.classList.remove('active');
-                    const langCurrent = picker.querySelector('.lang-current');
-                    if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
-                });
+                closeAllPickers();
             }
         });
         
         // Close on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                languagePickers.forEach(picker => {
-                    picker.classList.remove('active');
-                    const langCurrent = picker.querySelector('.lang-current');
-                    if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
-                });
+                closeAllPickers();
             }
-        });
-        
-        // Handle language selection
-        const langOptions = document.querySelectorAll('.lang-option');
-        langOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                const lang = this.getAttribute('data-lang');
-                const codeSpan = this.querySelector('.lang-code');
-                const currentCodeSpan = this.closest('.language-picker').querySelector('.lang-current .lang-code');
-                
-                if (currentCodeSpan) {
-                    currentCodeSpan.textContent = codeSpan.textContent;
-                }
-                
-                // Close dropdown
-                const picker = this.closest('.language-picker');
-                if (picker) {
-                    picker.classList.remove('active');
-                    const langCurrent = picker.querySelector('.lang-current');
-                    if (langCurrent) langCurrent.setAttribute('aria-expanded', 'false');
-                }
-            });
-            
-            // Keyboard support for language options
-            option.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    this.click();
-                }
-            });
         });
     }
     
-    console.log('All animations initialized WITHOUT touch/swipe support');
+    console.log('All animations initialized with proper mobile swipe support');
 });
