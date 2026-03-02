@@ -2121,7 +2121,7 @@ nav.scrolled .language-picker .lang-current:hover {
 }
 
 .team-image {
-  height: 300px;
+  height: 400px;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
@@ -3095,3 +3095,4 @@ nav.scrolled .language-picker .lang-current:hover {
     opacity: 0.1;
   }
 }
+
