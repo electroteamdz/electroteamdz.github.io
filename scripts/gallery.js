@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Gallery initialized');
     
     const galleryModal = document.querySelector('.gallery-modal');
+    const galleryBackdrop = document.querySelector('.gallery-backdrop');
     const closeGalleryBtn = document.querySelector('.close-gallery');
     const galleryPrevBtn = document.querySelector('.gallery-prev');
     const galleryNextBtn = document.querySelector('.gallery-next');
@@ -106,18 +107,23 @@ const projectAlbums = {
     }
 };
     
-    function openGallery(projectId) {
+    function openGallery(projectId, startIndex) {
         const album = projectAlbums[projectId];
         if (!album) return;
         
         currentGalleryImages = album.images;
-        currentGalleryIndex = 0;
+        const maxIndex = Math.max(currentGalleryImages.length - 1, 0);
+        currentGalleryIndex = Math.min(Math.max(startIndex || 0, 0), maxIndex);
         
-        updateGalleryImage();
         renderThumbnails();
+        updateGalleryImage();
+        const single = currentGalleryImages.length < 2;
+        if (galleryPrevBtn) galleryPrevBtn.hidden = single;
+        if (galleryNextBtn) galleryNextBtn.hidden = single;
         
         galleryModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        if (closeGalleryBtn) closeGalleryBtn.focus();
         
         console.log(`Gallery opened for project ${projectId}`);
     }
@@ -131,8 +137,20 @@ const projectAlbums = {
     
     function updateGalleryImage() {
         if (currentGalleryImages.length === 0) return;
-        
-        galleryMainImg.src = currentGalleryImages[currentGalleryIndex];        
+
+        const nextSrc = currentGalleryImages[currentGalleryIndex];
+        if (galleryMainImg.getAttribute('src') !== nextSrc) {
+            galleryMainImg.classList.add('is-loading');
+            galleryMainImg.onload = function() {
+                galleryMainImg.classList.remove('is-loading');
+            };
+            galleryMainImg.onerror = function() {
+                galleryMainImg.classList.remove('is-loading');
+            };
+            galleryMainImg.src = nextSrc;
+            if (galleryMainImg.complete) galleryMainImg.classList.remove('is-loading');
+        }
+        galleryMainImg.alt = 'Project photo ' + (currentGalleryIndex + 1);
         currentImageSpan.textContent = currentGalleryIndex + 1;
         totalImagesSpan.textContent = currentGalleryImages.length;
         
@@ -147,7 +165,9 @@ const projectAlbums = {
         currentGalleryImages.forEach((image, index) => {
             const thumbnail = document.createElement('img');
             thumbnail.src = image;
+            thumbnail.alt = 'Photo ' + (index + 1);
             thumbnail.classList.add('gallery-thumbnail');
+            thumbnail.setAttribute('role', 'listitem');
             if (index === currentGalleryIndex) {
                 thumbnail.classList.add('active');
             }
@@ -163,12 +183,15 @@ const projectAlbums = {
     
     function updateActiveThumbnail() {
         const thumbnails = document.querySelectorAll('.gallery-thumbnail');
+        let activeThumb = null;
         thumbnails.forEach((thumb, index) => {
-            thumb.classList.remove('active');
-            if (index === currentGalleryIndex) {
-                thumb.classList.add('active');
-            }
+            const active = index === currentGalleryIndex;
+            thumb.classList.toggle('active', active);
+            if (active) activeThumb = thumb;
         });
+        if (!activeThumb || !galleryThumbnails) return;
+        const left = activeThumb.offsetLeft - (galleryThumbnails.clientWidth - activeThumb.offsetWidth) / 2;
+        galleryThumbnails.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
     }
     
     function nextImage() {
@@ -196,7 +219,14 @@ const projectAlbums = {
         img.addEventListener('click', function() {
             const projectItem = this.closest('.project-item');
             const projectId = projectItem.getAttribute('data-project');
-            openGallery(projectId);
+            const file = (this.getAttribute('src') || '').split('/').pop();
+            const album = projectAlbums[projectId];
+            let startIndex = 0;
+            if (album && file) {
+                const found = album.images.findIndex(path => path.split('/').pop() === file);
+                if (found >= 0) startIndex = found;
+            }
+            openGallery(projectId, startIndex);
         });
     });
     
@@ -213,7 +243,7 @@ const projectAlbums = {
     }
     
     galleryModal.addEventListener('click', function(e) {
-        if (e.target === galleryModal) {
+        if (e.target === galleryModal || e.target === galleryBackdrop) {
             closeGallery();
         }
     });

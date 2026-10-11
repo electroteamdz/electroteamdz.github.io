@@ -1014,28 +1014,29 @@
         </section>
 
         <div class="gallery-modal" role="dialog" aria-modal="true" aria-label="Project gallery">
+            <div class="gallery-backdrop"></div>
             <div class="gallery-container">
-                <div class="gallery-header">
-                    <button class="close-gallery" aria-label="Close gallery">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="gallery-content">
-                    <div class="gallery-main">
-                        <img src="" alt="Gallery Image" loading="lazy">
-                    </div>
-                    <div class="gallery-thumbnails" role="list"></div>
-                </div>
-                <div class="gallery-controls">
-                    <button class="gallery-prev" aria-label="Previous image">
+                <button class="close-gallery" type="button" aria-label="Close gallery">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="gallery-stage">
+                    <button class="gallery-prev" type="button" aria-label="Previous image">
                         <i class="fas fa-chevron-left"></i>
                     </button>
-                    <button class="gallery-next" aria-label="Next image">
+                    <div class="gallery-main">
+                        <img src="" alt="Project photo">
+                    </div>
+                    <button class="gallery-next" type="button" aria-label="Next image">
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
-                <div class="gallery-counter">
-                    <span class="current-image">1</span> / <span class="total-images">0</span>
+                <div class="gallery-footer">
+                    <div class="gallery-counter">
+                        <span class="current-image">1</span>
+                        <span aria-hidden="true"> / </span>
+                        <span class="total-images">0</span>
+                    </div>
+                    <div class="gallery-thumbnails" role="list"></div>
                 </div>
             </div>
         </div>

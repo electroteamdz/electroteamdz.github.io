@@ -285,14 +285,109 @@ document.addEventListener('DOMContentLoaded', function() {
         let initialTranslate = 0;
         
         function getItemWidth() {
-            const isMobile = window.innerWidth <= 768;
-            const gap = isMobile ? 20 : 32;
-            const container = projectsCarousel;
-            
-            if (!container) return 0;
-            
-            const containerWidth = container.clientWidth || container.offsetWidth;
-            return containerWidth + gap;
+            if (projectItems.length > 1) {
+                const stride = projectItems[1].offsetLeft - projectItems[0].offsetLeft;
+                if (stride > 0) return stride;
+            }
+            return projectItems[0] ? projectItems[0].offsetWidth : 0;
+        }
+
+        function moreLabel(expanded) {
+            const pack = (typeof translations !== 'undefined' && translations[currentLang]) || {};
+            if (expanded) return pack['projects.showLess'] || 'Show less';
+            return pack['projects.showMore'] || 'Show more';
+        }
+
+        function syncCarouselHeight() {
+            projectItems.forEach(item => { item.style.height = ''; });
+            if (projectsCarousel) projectsCarousel.style.height = '';
+        }
+
+        function isMobileProjects() {
+            return window.innerWidth <= 768;
+        }
+
+        function collapseDescription(desc) {
+            if (!desc.classList.contains('is-expanded')) return;
+            desc.classList.remove('is-expanded');
+            desc.classList.add('is-clamped');
+            const button = desc.nextElementSibling;
+            if (button && button.classList.contains('project-more')) {
+                button.textContent = moreLabel(false);
+                button.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function updateMoreButtonLocks() {
+            const open = isMobileProjects()
+                ? document.querySelector('.project-description.is-expanded')
+                : null;
+            document.querySelectorAll('.project-more').forEach(btn => {
+                const desc = btn.previousElementSibling;
+                const locked = !!(open && desc && !desc.classList.contains('is-expanded'));
+                btn.classList.toggle('is-locked', locked);
+                btn.setAttribute('aria-disabled', locked ? 'true' : 'false');
+            });
+        }
+
+        function collapseExpandedDescriptions() {
+            if (!isMobileProjects()) return;
+            document.querySelectorAll('.project-description.is-expanded').forEach(collapseDescription);
+            updateMoreButtonLocks();
+            syncCarouselHeight();
+        }
+
+        function expandedProjectLeftScreen() {
+            if (!isMobileProjects()) return;
+            const desc = document.querySelector('.project-description.is-expanded');
+            if (!desc) return;
+            const item = desc.closest('.project-item');
+            if (!item) return;
+            const rect = item.getBoundingClientRect();
+            const gone = rect.bottom < 40 || rect.top > window.innerHeight - 40 || rect.right < 40 || rect.left > window.innerWidth - 40;
+            if (gone) collapseExpandedDescriptions();
+        }
+
+        function setupProjectDescriptions() {
+            document.querySelectorAll('.project-description').forEach(desc => {
+                let button = desc.nextElementSibling;
+                if (!button || !button.classList.contains('project-more')) {
+                    button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'project-more';
+                    button.setAttribute('aria-expanded', 'false');
+                    desc.insertAdjacentElement('afterend', button);
+                    button.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        if (isMobileProjects() && button.classList.contains('is-locked')) {
+                            collapseExpandedDescriptions();
+                            return;
+                        }
+                        const expanded = desc.classList.toggle('is-expanded');
+                        desc.classList.toggle('is-clamped', !expanded);
+                        button.textContent = moreLabel(expanded);
+                        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                        updateMoreButtonLocks();
+                        syncCarouselHeight();
+                    });
+                }
+
+                const wasExpanded = desc.classList.contains('is-expanded');
+                desc.classList.add('is-clamped');
+                desc.classList.remove('is-expanded');
+                const needsToggle = desc.scrollHeight > desc.clientHeight + 2;
+                button.hidden = !needsToggle;
+                if (!needsToggle) {
+                    desc.classList.remove('is-clamped', 'is-expanded');
+                } else if (wasExpanded) {
+                    desc.classList.remove('is-clamped');
+                    desc.classList.add('is-expanded');
+                }
+                button.textContent = moreLabel(desc.classList.contains('is-expanded'));
+                button.setAttribute('aria-expanded', desc.classList.contains('is-expanded') ? 'true' : 'false');
+            });
+            updateMoreButtonLocks();
+            syncCarouselHeight();
         }
         
         function updateProjectsCarousel(index) {
@@ -304,13 +399,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Don't update if index hasn't changed
             if (index === currentIndex) return;
+
+            collapseExpandedDescriptions();
             
             isTransitioning = true;
             currentIndex = index;
             
             // Calculate transform
             const itemWidth = getItemWidth();
-            if (itemWidth === 0) return;
+            if (itemWidth === 0) {
+                isTransitioning = false;
+                return;
+            }
             
             const translateX = -itemWidth * index;
             currentTranslate = translateX;
@@ -387,6 +487,30 @@ document.addEventListener('DOMContentLoaded', function() {
         // Initialize
         updateDots();
         updateButtonStates();
+        setupProjectDescriptions();
+        projectItems.forEach(item => {
+            item.querySelectorAll('img').forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', syncCarouselHeight, { once: true });
+                }
+            });
+        });
+        document.querySelectorAll('.lang-option').forEach(option => {
+            option.addEventListener('click', () => {
+                requestAnimationFrame(setupProjectDescriptions);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            expandedProjectLeftScreen();
+        }, { passive: true });
+
+        document.addEventListener('click', (event) => {
+            if (!isMobileProjects()) return;
+            const control = event.target.closest('button, a');
+            if (!control || control.classList.contains('project-more')) return;
+            collapseExpandedDescriptions();
+        });
         
         // Mobile swipe support
         if (projectsCarousel) {
@@ -479,6 +603,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 projectsList.offsetHeight;
                 projectsList.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                setupProjectDescriptions();
             }, 250);
         });
     }
