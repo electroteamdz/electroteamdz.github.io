@@ -1894,8 +1894,11 @@ nav.scrolled .language-picker .lang-current:hover {
 
 .projects-dots {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 10px;
   align-items: center;
+  max-width: 220px;
 }
 
 .projects-dots .dot {
@@ -2100,9 +2103,9 @@ nav.scrolled .language-picker .lang-current:hover {
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 3rem;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -2167,6 +2170,11 @@ nav.scrolled .language-picker .lang-current:hover {
   display: flex;
   justify-content: center;
   gap: 1rem;
+}
+
+.team-social a[hidden],
+.team-social a[href=""] {
+  display: none;
 }
 
 .team-social a {

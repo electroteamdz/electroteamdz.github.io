@@ -396,6 +396,18 @@ Time: ${new Date().toLocaleTimeString()}
         }
     });
 
+    // Hide a LinkedIn button when its profile link is an empty string.
+    document.querySelectorAll('.team-linkedin').forEach(link => {
+        const url = (link.getAttribute('data-linkedin') || '').trim();
+        if (!url) {
+            link.hidden = true;
+            link.removeAttribute('href');
+            return;
+        }
+        link.hidden = false;
+        link.href = url;
+    });
+
     // ===== TEAM CARD HOVER EFFECTS =====
     const teamCards = document.querySelectorAll('.team-card');
     teamCards.forEach(card => {

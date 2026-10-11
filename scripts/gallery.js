@@ -48,6 +48,61 @@ const projectAlbums = {
             "assets/projects/allianceAssurancesUpsMaintenance/4.jpeg",
             "assets/projects/allianceAssurancesUpsMaintenance/5.jpeg",
         ]
+    },
+    5: {
+        images: [
+            "assets/projects/cemBoudouaou/main.jpeg",
+            "assets/projects/cemBoudouaou/1.jpeg",
+            "assets/projects/cemBoudouaou/2.jpeg",
+            "assets/projects/cemBoudouaou/3.jpeg",
+            "assets/projects/cemBoudouaou/4.jpeg",
+            "assets/projects/cemBoudouaou/5.jpeg",
+            "assets/projects/cemBoudouaou/6.jpeg",
+            "assets/projects/cemBoudouaou/7.jpeg",
+            "assets/projects/cemBoudouaou/8.jpeg",
+        ]
+    },
+    6: {
+        images: [
+            "assets/projects/hamadiResidence/main.jpeg",
+            "assets/projects/hamadiResidence/1.jpeg",
+            "assets/projects/hamadiResidence/2.jpeg",
+            "assets/projects/hamadiResidence/3.jpeg",
+            "assets/projects/hamadiResidence/4.jpeg",
+        ]
+    },
+    7: {
+        images: [
+            "assets/projects/rouibaSwimmingPool/main.jpeg",
+            "assets/projects/rouibaSwimmingPool/1.jpeg",
+            "assets/projects/rouibaSwimmingPool/2.jpeg",
+            "assets/projects/rouibaSwimmingPool/3.jpeg",
+            "assets/projects/rouibaSwimmingPool/4.jpeg",
+            "assets/projects/rouibaSwimmingPool/5.jpeg",
+            "assets/projects/rouibaSwimmingPool/6.jpeg",
+        ]
+    },
+    8: {
+        images: [
+            "assets/projects/undergroundParking/main.jpeg",
+            "assets/projects/undergroundParking/1.jpeg",
+            "assets/projects/undergroundParking/2.jpeg",
+            "assets/projects/undergroundParking/3.jpeg",
+            "assets/projects/undergroundParking/4.jpeg",
+        ]
+    },
+    9: {
+        images: [
+            "assets/projects/drariaApartment/main.jpeg",
+            "assets/projects/drariaApartment/1.jpeg",
+            "assets/projects/drariaApartment/2.jpeg",
+            "assets/projects/drariaApartment/3.jpeg",
+            "assets/projects/drariaApartment/4.jpeg",
+            "assets/projects/drariaApartment/5.jpeg",
+            "assets/projects/drariaApartment/6.jpeg",
+            "assets/projects/drariaApartment/7.jpeg",
+            "assets/projects/drariaApartment/8.jpeg",
+        ]
     }
 };
     
